@@ -1,0 +1,151 @@
+/*
+#15A083
+#F3CF3E
+#ebebeb
+#ffffff
+*/
+
+
+/*  General Styling */
+
+*{
+    margin: 0px;
+}
+
+.headerContainer, .footerContainer {
+    display: flex;
+    background-color:black;
+    height: 40px;
+}
+.headerContainer p, .footerContainer p{
+    color: white;
+}
+.navigation{
+    display: flex;
+    margin: auto;
+    justify-items: center;
+}
+.navigation a {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+.image {
+    width: 100%;
+}
+
+/* Hotel comparision - compare.php */
+
+#hotelContainer {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: 60% 40%;
+    grid-gap: 20px;
+    height: 1000px;
+    width: 80%;
+    background-color: grey;
+}
+#selectedHotel{
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    background-color: #15A083;
+}
+#comparedOne, #comparedTwo, #comparedThree {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    background-color: white;
+}
+#selectedHotel img {
+    width: 100%;
+    height: auto;
+}
+#comparedOne img, #comparedTwo img, #comparedThree img {
+    width: 100%;
+    height: auto;
+}
+#comparedTwo{
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+#comparedThree{
+    grid-column-start: 3;
+    grid-column-end: 4;
+}
+
+/* Hotel Information - shining.php, transylavania.php, budapest.php, gorgoroth.php*/ 
+
+.modelContainer{
+    display: grid;
+    grid-template-columns: 33.3% 33.3% 33.3%;
+    grid-template-rows: 25% 25% 25% 25%;
+    height: 80%;   
+}
+.titleImage{
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 5;
+}
+.titleImage img {
+    width: 100%;
+}
+.titleTextBox, .titleTextBoxShadow {
+    display: flex;
+    height: 70%;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 4;
+    grid-row-end: 5; 
+    transform: skew(15deg) translate(-30px);
+    align-items: center;
+    background-color: #F3CF3E;
+    animation-name: titleSweep;
+    animation-duration: 1.5s;
+}
+.titleTextBoxShadow {
+    background-color: black;
+    animation-name: titleShadowSweep;
+    animation-duration: 1.5s;
+    transform: skew(15deg) translate(-15px) translateY(10px);
+}
+.titleTextBox p{
+    font-size: 200%;
+    transform: skew(-15deg);
+    margin: auto;
+    color: white;
+    animation-name: titleWordSweep;
+    animation-duration: 2s;
+}
+.topTitleLine {
+    background-color: white;
+    height: 20px;
+    grid-column-start: 2;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    transform: skew(15deg); 
+    animation-name: topTitleLineSweep;
+    animation-duration: 2s;  
+}
+@keyframes titleSweep {   
+    0% {transform: skew(15deg) translate(-1500px)}
+    100% {transform: skew(15deg) translate(-30px);}
+}
+@keyframes titleShadowSweep  {   
+    0% {transform: skew(15deg) translate(-1200px) translateY(10px)}
+    80% {transform: skew(15deg) translate(-15px) translateY(10px);}
+}
+@keyframes titleWordSweep  {   
+    20% {transform: skew(-15deg) translate(-1000px)}
+    100% {transform: skew(-15deg) translate(0px);}
+}
+@keyframes topTitleLineSweep {
+    0% {transform: skew(15deg) translate(1000px)}
+    100% {transform: skew(15deg) translate(0px);}
+}
+
+
+
+
+
