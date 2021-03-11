@@ -1,5 +1,4 @@
 <?php session_start();
-
 include('function.php')?>
 <!doctype html>
 <html lang="en">
@@ -20,16 +19,17 @@ include('function.php')?>
     </nav>
   </header>
 
+<?php //echo $newBooking->getName() ?>
   <body>
     <div id="selectedInformation">
-        <p>Thank you <?php echo $_SESSION['name']; ?> for choosing <?php echo $_SESSION['hotels']; ?></p>
+        <p>Thank you <?php echo $newBooking->getName() ; ?> for choosing <?php echo $newBooking->getHotel(); ?></p>
         <h4>Dates</h4>
-        <p>checkin for the - <?php echo $_SESSION['startDate']; ?></p>
-        <p>checkout on the - <?php echo $_SESSION['endDate']; ?></p>
-        <p>total number of days - <?php echo $_SESSION['days'] ; ?></p>
+        <p>checkin for the - <?php echo $newBooking->getCheckIn(); ?></p>
+        <p>checkout on the - <?php echo $newBooking->getCheckOut(); ?></p>
+        <p>total number of days - <?php echo $newBooking->getNumberOfDays();    ?></p>
         <h4>Number of guests</h4>
-        <p><?php echo $_SESSION['adults']; ?> adults and <?php echo $_SESSION['children']; ?> children</p>
-        <p>Below is more information about <?php echo  $_SESSION['hotels']; ?> with comparisons to some more in the local area.</p>
+        <p><?php echo $newBooking->getNumOfAdults(); ?> adults and <?php echo $newBooking->getNumOfChildren(); ?> children</p>
+        <p>Below is more information about <?php echo $newBooking->getHotel(); ?> with comparisons to some more in the local area.</p>
     </div>
 
     <div id="hotelContainer">       

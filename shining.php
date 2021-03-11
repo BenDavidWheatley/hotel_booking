@@ -1,4 +1,6 @@
-<?php session_start();?>
+<?php session_start();
+include('function.php');?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -17,7 +19,7 @@
       <a href="transylvania.php"><p>Hotel Transylvania</p></a>
     </nav>
   </header>
-
+  <?php echo $newBooking->name; ?>
   <body id='mainBody'>
 
 <!-- Main image and title -->

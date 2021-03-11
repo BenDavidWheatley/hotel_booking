@@ -1,5 +1,5 @@
 <?php session_start();
-include('function.php')?>
+require('function.php')?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -8,13 +8,8 @@ include('function.php')?>
     <link rel="stylesheet" href="style/style.css" type="text/css">
     <title>Hotel Compare</title>
   </head>
-  <?php   
+  
 
-$date1 = $_POST['checkIn'];
-$date2 = $_POST['checkOut'];
-$_SESSION['days'] = dateDiffInDays($date1, $date2); 
-?> 
-   
   <header class='headerContainer'>
     <nav class="navigation">
       <a href="index.php"><p>Home</p></a>
@@ -37,6 +32,9 @@ $_SESSION['days'] = dateDiffInDays($date1, $date2);
         
         <label for="name">Name</label>
         <input type="text" id="name" name="name">
+
+        <label for="name">Surname</label>
+        <input type="text" id="surname" name="surname">
 
         <label for="hotels">choose your hotel</label>
         <select id="hotels" name="hotels">
@@ -66,13 +64,6 @@ $_SESSION['days'] = dateDiffInDays($date1, $date2);
         <!-- must vaildate form with required, check dates, no html inputs, valid emial -->
 
         <?php if ($_POST['submit']){        
-          $_SESSION['name'] = $_POST['name'];
-          $_SESSION['hotels'] = $_POST['hotels'];
-          $_SESSION['startDate'] = $_POST['checkIn'];
-          $_SESSION['endDate'] = $_POST['checkOut'];
-          $_SESSION['adults'] = $_POST['numAdults'];
-          $_SESSION['children'] = $_POST['numChildren'];
-
           if($_SESSION['hotels'] === "Gorgoroth Hotel"){
               $rateAdult = $_SESSION['gorgorothAdultRate'];
               $rateChild = $_SESSION['gorgorothChildRate'];
@@ -100,21 +91,21 @@ $_SESSION['days'] = dateDiffInDays($date1, $date2);
           }
         ?>
         <div id="selectedInformation">
-          <p>Thank you <?php echo $_SESSION['name']; ?> for choosing <?php echo $_SESSION['hotels']; ?></p>
+          <p>Thank you <?php echo $newBooking->getName() . " "; echo $newBooking->getSurname()?> for choosing <?php echo $newBooking->getHotel();?></p>
           <h4>Dates</h4>
-          <p>checkin for the - <?php echo $_SESSION['startDate'];?></p>
-          <p>checkout on the - <?php echo $_SESSION['endDate']; ?></p>
-          <p>Number of days - <?php echo $_SESSION['days']?></p>
+          <p>checkin for the - <?php echo $newBooking->getCheckIn();?></p>
+          <p>checkout on the - <?php echo $newBooking->getCheckOut();?></p>
+          <p>Number of days - <?php echo $newBooking->getNumberOfDays();?></p>
           <h4>Number of guests</h4>
-          <p><?php echo $_SESSION['adults']; ?> adults and <?php echo $_SESSION['children']; ?> children</p>
+          <p><?php echo $newBooking->getNumOfAdults(); ?> adults and <?php echo $newBooking->getNumOfChildren(); ?> children</p>
           
           <p> Cost is - <br> Adults total R<?php echo $_SESSION['adultCost'] ?> 
-          at R<?php echo $rateAdult ; ?> per adult per night.<br>
+          at R<?php /*$gorgoroth->getAdultRate()*/ ; ?> per adult per night.<br>
           Children total R<?php echo $_SESSION['childCost'] ?> at R<?php echo $rateChild; ?> per child per night</p>
           <p> Total Cost = R<?php echo $_SESSION['totalCost'] ?></p>
           
 
-          <p>Not too sure about <?php echo $_POST['hotels']; ?> ? Why don't you compare it to some of the other hotels in the area?</p>
+          <p>Not too sure about <?php echo $newBooking->getHotel(); ?> ? Why don't you compare it to some of the other hotels in the area?</p>
           <button formaction="compare.php">Compare</button>
        </div>
        <?php } ?>
