@@ -19,7 +19,7 @@ include('function.php');?>
       <a href="transylvania.php"><p>Hotel Transylvania</p></a>
     </nav>
   </header>
-  <?php echo $newBooking->name; ?>
+  
   <body id='mainBody'>
 
 <!-- Main image and title -->

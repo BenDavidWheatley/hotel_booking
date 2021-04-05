@@ -63,33 +63,7 @@ require('function.php')?>
 
         <!-- must vaildate form with required, check dates, no html inputs, valid emial -->
 
-        <?php if ($_POST['submit']){        
-          if($_SESSION['hotels'] === "Gorgoroth Hotel"){
-              $rateAdult = $_SESSION['gorgorothAdultRate'];
-              $rateChild = $_SESSION['gorgorothChildRate'];
-              $_SESSION['adultCost'] = ($_SESSION['adults'] * $_SESSION['gorgorothAdultRate']) * $_SESSION['days'];
-              $_SESSION['childCost'] = ($_SESSION['children'] * $_SESSION['gorgorothChildRate']) * $_SESSION['days'];
-              $_SESSION['totalCost'] = $_SESSION['adultCost'] + $_SESSION['childCost'];
-          } elseif ($_SESSION['hotels'] === "The Overlook Hotel") {
-              $rateAdult = $_SESSION['overlookAdultRate'];
-              $rateChild = $_SESSION['overlookDayChildRate'];
-              $_SESSION['adultCost'] =  ($_SESSION['adults'] * $_SESSION['overlookAdultRate']) * $_SESSION['days'];
-              $_SESSION['childCost'] = ($_SESSION['children'] * $_SESSION['overlookDayChildRate']) * $_SESSION['days'];
-              $_SESSION['totalCost'] =  $_SESSION['adultCost'] + $_SESSION['childCost'];;
-          } elseif ($_SESSION['hotels'] === "Grand Budapest Hotel") {
-              $rateAdult = $_SESSION['budapestAdultRate'];
-              $rateChild = $_SESSION['budapestChildRate'];
-              $_SESSION['adultCost'] =  ($_SESSION['adults'] * $_SESSION['budapestAdultRate']) * $_SESSION['days'];
-              $_SESSION['childCost'] = ($_SESSION['children'] * $_SESSION['budapestChildRate']) * $_SESSION['days'];
-              $_SESSION['totalCost'] =  $_SESSION['adultCost'] + $_SESSION['childCost'];;
-          } elseif ($_SESSION['hotels'] === "Hotel Transylvania") { 
-              $rateAdult = $_SESSION['transylvaniaAdultRate'];
-              $rateChild = $_SESSION['transylvaniaChildRate'];
-              $_SESSION['adultCost'] =  ($_SESSION['adults'] * $_SESSION['transylvaniaAdultRate']) * $_SESSION['days'];
-              $_SESSION['childCost'] = ($_SESSION['children'] * $_SESSION['transylvaniaChildRate']) * $_SESSION['days'];
-              $_SESSION['totalCost'] =  $_SESSION['adultCost'] + $_SESSION['childCost'];
-          }
-        ?>
+        <?php if ($_POST['submit']) { ?>
         <div id="selectedInformation">
           <p>Thank you <?php echo $newBooking->getName() . " "; echo $newBooking->getSurname()?> for choosing <?php echo $newBooking->getHotel();?></p>
           <h4>Dates</h4>
@@ -100,19 +74,15 @@ require('function.php')?>
           <p><?php echo $newBooking->getNumOfAdults(); ?> adults and <?php echo $newBooking->getNumOfChildren(); ?> children</p>
           
           <p> Cost is - <br> Adults total R<?php echo $_SESSION['adultCost'] ?> 
-          at R<?php /*$gorgoroth->getAdultRate()*/ ; ?> per adult per night.<br>
+          at R<?php echo $rateAdult ; ?> per adult per night.<br>
           Children total R<?php echo $_SESSION['childCost'] ?> at R<?php echo $rateChild; ?> per child per night</p>
           <p> Total Cost = R<?php echo $_SESSION['totalCost'] ?></p>
-          
 
           <p>Not too sure about <?php echo $newBooking->getHotel(); ?> ? Why don't you compare it to some of the other hotels in the area?</p>
           <button formaction="compare.php">Compare</button>
        </div>
        <?php } ?>
-
-      </form>
-        
-      
+      </form>     
     </div>
 
   </body>

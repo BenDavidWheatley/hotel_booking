@@ -55,7 +55,6 @@ class BookingInformation {
     public function setNumberOfDays($checkIn, $checkOut){
         $diff = strtotime($checkOut) - strtotime($checkIn); 
         $this->numberOfDays = (abs(round($diff / 86400))) + 1; // 86400 is the number of seconds in the day. Adding 1 includes the day booked
-
     }
 
     //Getters
@@ -88,8 +87,9 @@ class BookingInformation {
     }
 }
    
+// Setting of the variables from the form submition
 
-    $newBooking = new BookingInformation;
+$newBooking = new BookingInformation;
     $newBooking->setName($_SESSION['name']);
     $newBooking->setSurname($_SESSION['surname']);
     $newBooking->setHotel($_SESSION['hotels']);
@@ -100,44 +100,31 @@ class BookingInformation {
     $newBooking->setEmail($_SESSION['email']);
     $newBooking->setNumberOfDays($_SESSION['checkIn'], $_SESSION['checkOut']);
 
+switch ($_SESSION['hotels']){
+    case "Gorgoroth Hotel":
+        $rateAdult = 1800;
+        $rateChild = 800;
+      break;
+    case "The Overlook Hotel":
+        $rateAdult = 2500;
+        $rateChild = 1500;
+      break;
+    case "Grand Budapest Hotel":
+        $rateAdult = 3000;
+        $rateChild = 2000;
+      break;
+    case "Hotel Transylvania":
+        $rateAdult = 2200;
+        $rateChild = 1500;
+      break;
+  }
+    $_SESSION['adultCost'] = (3 /*number of adults*/ * $rateAdult) *  2 /*number of days*/;
+    $_SESSION['childCost'] = (3 /*number of children*/ * $rateChild) *  2 ;
+    $_SESSION['totalCost'] = $_SESSION['adultCost'] + $_SESSION['childCost'];
 
-$test = 'test';
-//Information about each hotel
+/*
 
-class Hotel extends BookingInformation {
-
-    public $gorgorothAdultRate = 1800;
-    public $gorgorothChildRate = 800;
-    public $budapestAdultRate = 3000;
-    public $budapestChildRate = 2000;
-    public $overlookAdultRate = 2200;
-    public $overlookChildRate = 1300;
-    public $transylvaniaAdultRate = 2500;
-    public $transylvaniaChildRate = 1500;
-   
-    public function setDayRates ($adultDayRate, $childDayRate){
-        $this->adultDayRate = $adultDayRate;
-        $this->childDayRate = $childDayRate;
-    }
-    public function getAdultRate (){
-        echo $_SESSION['transylvaniaChildRate'];       
-    }
-    public function getChildRate(){
-        echo $this->childDayRate;
-    }
-}
-
-if(isset($_POST['submit'])){
-    $cost = new Hotel;
-}
-
-class Resorts extends Hotel {
-    
-}
-
-
-
-//the below code is currently being used and working
+//the below old code is currently being used and working
 
 $_SESSION['gorgorothAdultRate'] = 1800;
 $_SESSION['gorgorothChildRate'] = 800;
@@ -151,5 +138,30 @@ $_SESSION['transylvaniaChildRate'] = 1300;
 $_SESSION['overlookAdultRate'] = 2500;
 $_SESSION['overlookDayChildRate'] = 1500;
 
+if($_SESSION['hotels'] === "Gorgoroth Hotel"){
+    $rateAdult = $_SESSION['gorgorothAdultRate'];
+    $rateChild = $_SESSION['gorgorothChildRate'];
+    $_SESSION['adultCost'] = ($_SESSION['adults'] * $_SESSION['gorgorothAdultRate']) * $_SESSION['days'];
+    $_SESSION['childCost'] = ($_SESSION['children'] * $_SESSION['gorgorothChildRate']) * $_SESSION['days'];
+    $_SESSION['totalCost'] = $_SESSION['adultCost'] + $_SESSION['childCost'];
+} elseif ($_SESSION['hotels'] === "The Overlook Hotel") {
+    $rateAdult = $_SESSION['overlookAdultRate'];
+    $rateChild = $_SESSION['overlookDayChildRate'];
+    $_SESSION['adultCost'] =  ($_SESSION['adults'] * $_SESSION['overlookAdultRate']) * $_SESSION['days'];
+    $_SESSION['childCost'] = ($_SESSION['children'] * $_SESSION['overlookDayChildRate']) * $_SESSION['days'];
+    $_SESSION['totalCost'] =  $_SESSION['adultCost'] + $_SESSION['childCost'];;
+} elseif ($_SESSION['hotels'] === "Grand Budapest Hotel") {
+    $rateAdult = $_SESSION['budapestAdultRate'];
+    $rateChild = $_SESSION['budapestChildRate'];
+    $_SESSION['adultCost'] =  ($_SESSION['adults'] * $_SESSION['budapestAdultRate']) * $_SESSION['days'];
+    $_SESSION['childCost'] = ($_SESSION['children'] * $_SESSION['budapestChildRate']) * $_SESSION['days'];
+    $_SESSION['totalCost'] =  $_SESSION['adultCost'] + $_SESSION['childCost'];;
+} elseif ($_SESSION['hotels'] === "Hotel Transylvania") { 
+    $rateAdult = $_SESSION['transylvaniaAdultRate'];
+    $rateChild = $_SESSION['transylvaniaChildRate'];
+    $_SESSION['adultCost'] =  ($_SESSION['adults'] * $_SESSION['transylvaniaAdultRate']) * $_SESSION['days'];
+    $_SESSION['childCost'] = ($_SESSION['children'] * $_SESSION['transylvaniaChildRate']) * $_SESSION['days'];
+    $_SESSION['totalCost'] =  $_SESSION['adultCost'] + $_SESSION['childCost'];
+} */
 
 ?>

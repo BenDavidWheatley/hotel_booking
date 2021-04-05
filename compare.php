@@ -8,7 +8,7 @@ include('function.php')?>
     <link rel="stylesheet" href="style/style.css" type="text/css">
     <title>Hotel Compare</title>
   </head>
-
+<?php echo $_SESSION['adultCost'] ?>
   <header class='headerContainer'>
     <nav class="navigation">
       <a href="index.php"><p>Home</p></a>
@@ -31,6 +31,7 @@ include('function.php')?>
         <p><?php echo $newBooking->getNumOfAdults(); ?> adults and <?php echo $newBooking->getNumOfChildren(); ?> children</p>
         <p>Below is more information about <?php echo $newBooking->getHotel(); ?> with comparisons to some more in the local area.</p>
     </div>
+    <a href="index.php"><button value="back">Back to selection</button></a>
 
     <div id="hotelContainer">       
         <section id="selectedHotel">
