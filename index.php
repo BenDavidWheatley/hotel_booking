@@ -8,21 +8,14 @@ require('function.php')?>
     <link rel="stylesheet" href="style/style.css" type="text/css">
     <title>Hotel Compare</title>
   </head>
-  
 
-  <header class='headerContainer'>
-    <nav class="navigation">
-      <a href="index.php"><p>Home</p></a>
-      <a href="gorgoroth.php"><p>Hotel Gorgoroth</p></a>
-      <a href="budapest.php"><p>Grand Budapest Hotel</p></a>
-      <a href="shining.php"><p>The Overlook Hotel</p></a>
-      <a href="transylvania.php"><p>Hotel Transylvania</p></a>
-    </nav>
+  <header>
+    <?php include('header.php') ?>
   </header>
-
+  
   <body class='mainBody'>
-  <h1>Hotel Compare</h1>
-  <p>for those with a more adventurios side</p>
+    <h1>Hotel Compare</h1>
+    <p>for those with a more adventurios side</p>
 
   <!-- Checkin and comapre form -->
 
@@ -73,10 +66,10 @@ require('function.php')?>
           <h4>Number of guests</h4>
           <p><?php echo $newBooking->getNumOfAdults(); ?> adults and <?php echo $newBooking->getNumOfChildren(); ?> children</p>
           
-          <p> Cost is - <br> Adults total R<?php echo $_SESSION['adultCost'] ?> 
-          at R<?php echo $rateAdult ; ?> per adult per night.<br>
-          Children total R<?php echo $_SESSION['childCost'] ?> at R<?php echo $rateChild; ?> per child per night</p>
-          <p> Total Cost = R<?php echo $_SESSION['totalCost'] ?></p>
+          <p> Cost is - <br> 
+          Adults total R<?php echo $newBooking->getAdultCostTotal()?> at R<?php echo $newBooking->getAdultRate();?> per adult per night.<br>
+          Children total R<?php echo $newBooking->getChildCostTotal()?> at R<?php echo $newBooking->getChildRate(); ?> per child per night</p>
+          <p> Total Cost = R<?php echo $newBooking->getTotalCost()?></p>
 
           <p>Not too sure about <?php echo $newBooking->getHotel(); ?> ? Why don't you compare it to some of the other hotels in the area?</p>
           <button formaction="compare.php">Compare</button>
@@ -87,7 +80,8 @@ require('function.php')?>
 
   </body>
 
-  <footer class="footerContainer">
+  <footer">
+    <?php include("footer.php") ?>
   </footer>
 
 </html>

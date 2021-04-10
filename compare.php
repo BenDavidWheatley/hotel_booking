@@ -8,18 +8,11 @@ include('function.php')?>
     <link rel="stylesheet" href="style/style.css" type="text/css">
     <title>Hotel Compare</title>
   </head>
-<?php echo $_SESSION['adultCost'] ?>
-  <header class='headerContainer'>
-    <nav class="navigation">
-      <a href="index.php"><p>Home</p></a>
-      <a href="gorgoroth.php"><p>Hotel Gorgoroth</p></a>
-      <a href="budapest.php"><p>Grand Budapest Hotel</p></a>
-      <a href="shining.php"><p>The Overlook Hotel</p></a>
-      <a href="transylvania.php"><p>Hotel Transylvania</p></a>
-    </nav>
+  
+  <header>    
+    <?php include('header.php') ?>
   </header>
 
-<?php //echo $newBooking->getName() ?>
   <body>
     <div id="selectedInformation">
         <p>Thank you <?php echo $newBooking->getName() ; ?> for choosing <?php echo $newBooking->getHotel(); ?></p>
@@ -33,6 +26,8 @@ include('function.php')?>
     </div>
     <a href="index.php"><button value="back">Back to selection</button></a>
 
+    <!-- initial hotel that was picked -->
+
     <div id="hotelContainer">       
         <section id="selectedHotel">
             <?php
@@ -41,63 +36,78 @@ include('function.php')?>
                 if ($selectedHotel === 'Gorgoroth Hotel') {
                     ?>
                     <img class="selectedHotelImage" value="one" src="assets/images/gorgoroth/gorgoroth_hotel.jpg"> 
-                    <p>Total cost R<?php echo $_SESSION['totalCost']?></p>
-                    <a href="gorgoroth.php" target="_blank"><button>More Information</button></a><button>confirm booking</button>
+                    <p>Total cost R<?php echo $newBooking->getTotalCost()?></p>
+                    <a href="gorgoroth.php" target="_blank"><button>More Information</button></a>
                 <?php } else if ($selectedHotel === 'The Overlook Hotel') {
                     ?>
                     <img class="selectedHotelImage" value="two" src="assets/images/shining/the_shining.jpeg">
-                    <p>Total cost R<?php echo $_SESSION['totalCost']?></p>
-                    <a href='shining.php' target="_blank"><button>More Information</button></a><button>confirm booking</button>
+                    <p>Total cost R<?php echo $newBooking->getTotalCost()?></p>
+                    <a href='shining.php' target="_blank"><button>More Information</button></a>
                 <?php } else if ($selectedHotel === 'Grand Budapest Hotel') {
                     ?>
                     <img class="selectedHotelImage" value="three" src="assets/images/grand_budapest/budapest.jpeg">
-                    <p>Total cost R<?php echo $_SESSION['totalCost']?></p>
-                    <a href='budapest.php' target="_blank"><button>More Information</button></a><button>confirm booking</button>
+                    <p>Total cost R<?php echo $newBooking->getTotalCost()?></p>
+                    <a href='budapest.php' target="_blank"><button>More Information</button></a>
                 <?php } else {
                     ?>
                     <img class="selectedHotelImage" value="four" src="assets/images/transylvania/hotel_transylvania.jpg">
-                    <p>Total cost R<?php echo $_SESSION['totalCost']?></p>
+                    <p>Total cost R<?php echo $newBooking->getTotalCost()?></p>
                     <a href='transylvania.php' target="_blank"><button>More Information</button></a>
                 <?php
                 } ?>
-            
+                <a href='booknow.php' target='_blank'><input type="submit" value="confirm booking"></input></a>
         </section>
+
+        <!-- First hotel compared -->
 
         <section id="comparedOne">
             <?php if ($selectedHotel === "Gorgoroth Hotel" || $selectedHotel ===  "The Overlook Hotel" || $selectedHotel === "Grand Budapest Hotel") {
                 ?> 
                 <img class="firstCompared" value="four" src="assets/images/transylvania/hotel_transylvania.jpg"> 
-                <p>For the same dates you could pay R<?php echo ((($_SESSION['adults'] * $_SESSION['transylvaniaAdultRate']) + ($_SESSION['children'] * $_SESSION['transylvaniaChildRate'])) * $_SESSION['days'])?></p>
-                <a href='transylvania.php' target='_blank'><button>More Information</button></a><button>Book now</button>
+                <p>For the same dates you could pay R<?php echo $newBooking->getTransCompare(); ?> at the Transylvania Hotel</p>
+                <a href='transylvania.php' target='_blank'><button>More Information</button></a>
+                <form action="booknow.php" method="post">
+                <a href='booknow.php' target='_blank'><input type="submit" value="book now" name="hotelTrans"></input></a>
+                </form>
             <?php } else {
                 ?> <img class="firstCompared" value="one" src="assets/images/gorgoroth/gorgoroth_hotel.jpg"> 
-                <p>For the same dates you could pay R<?php echo ((($_SESSION['adults'] * $_SESSION['gorgorothAdultRate']) + ($_SESSION['children'] * $_SESSION['gorgorothChildRate'])) * $_SESSION['days'])?></p>
-                <a href='gorgoroth.php' target='_blank'><button>More Information</button></a><button>Book now</button>
-            <?php } ?>
-            
+                <p>For the same dates you could pay R<?php echo $newBooking->getGorgorothCompare();?> at the Gorgoroth Hotel</p>
+                <a href='gorgoroth.php' target='_blank'><button>More Information</button></a>
+                <form action="booknow.php" method="post">
+                <a href='booknow.php' target='_blank'><input type="submit" value="book now" name="gorgorothHotel"></input></a>
+                </form>
+            <?php } ?>         
         </section>
 
+        <!-- second hotel compared -->
+            
         <section id="comparedTwo">  
             <?php if ($selectedHotel === "Gorgoroth Hotel" || $selectedHotel ===  "The Overlook Hotel" || $selectedHotel === "Hotel Transylvania") {  
                 ?> <img class="secondCompare" value="three" src="assets/images/grand_budapest/budapest.jpeg">
-                <p>For the same dates you could pay R<?php echo ((($_SESSION['adults'] * $_SESSION['budapestAdultRate']) + ($_SESSION['children'] * $_SESSION['budapestChildRate'])) * $_SESSION['days'])?></p>
-                <a href='budapest.php' target='_blank'><button>More Information</button></a><button>Book now</button>
+                <p>For the same dates you could pay R<?php echo $newBooking->getBudapestCompare(); ?> at The Grand Budapest Hotel</p>
+                <a href='budapest.php' target='_blank'><button>More Information</button></a>
+                <a href='booknow.php' target='_blank'><input type="submit" value="book now" name="budapestHotel"></input></a>
             <?php } else {
                 ?> <img class="secondCompare" value="one" src="assets/images/gorgoroth/gorgoroth_hotel.jpg">
-                <p>For the same dates you could pay R<?php echo ((($_SESSION['adults'] * $_SESSION['gorgorothAdultRate']) + ($_SESSION['children'] * $_SESSION['gorgorothChildRate'])) * $_SESSION['days'])?></p>
-                <a href='gorgoroth.php' target='_blank'><button>More Information</button></a><button>Book now</button>
+                <p>For the same dates you could pay R<?php echo $newBooking->getGorgorothCompare(); ?> at the Gorgoroth Hotel</p>
+                <a href='gorgoroth.php' target='_blank'><button>More Information</button></a>
+                <a href='booknow.php' target='_blank'><input type="submit" value="book now" name="gorgorothHotel"></input></a>
             <?php } ?>
         </section>
+
+        <!-- third hotel compared -->        
 
         <section id="comparedThree">
             <?php if ($selectedHotel === "Gorgoroth Hotel" || $selectedHotel ===  "Grand Budapest Hotel" || $selectedHotel === "Hotel Transylvania") {  
                 ?> <img class="thirdCompare" value="two" src="assets/images/shining/the_shining.jpeg">
-                <p>For the same dates you could pay R<?php echo ((($_SESSION['adults'] * $_SESSION['overlookAdultRate']) + ($_SESSION['children'] * $_SESSION['overlookDayChildRate'])) * $_SESSION['days'])?></p>
-                <a href='shining.php' target='_blank'><button>More Information</button></a><button>Book now</button>
+                <p>For the same dates you could pay R<?php  echo $newBooking->getOverlookCompare(); ?> at the Overlook Hotel</p>
+                <a href='shining.php' target='_blank'><button>More Information</button></a>
+                <a href='booknow.php' target='_blank'><input type="submit" value="book now" name="OverlookHotel"></input></a>
             <?php } else {
                 ?> <img class="thirdCompare" value="one" src="assets/images/gorgoroth/gorgoroth_hotel.jpg">
-                <p>For the same dates you could pay R<?php echo ((($_SESSION['adults'] * $_SESSION['gorgorothAdultRate']) + ($_SESSION['children'] * $_SESSION['gorgorothChildRate'])) * $_SESSION['days'])?></p>
-                <a href='gorgoroth.php' target='_blank'><button>More Information</button></a><button>Book now</button>
+                <p>For the same dates you could pay R<?php echo $newBooking->getGorgorothCompare();?> at the Gorgoroth Hotel</p>
+                <a href='gorgoroth.php' target='_blank'><button>More Information</button></a>
+                <a href='booknow.php' target='_blank'><input type="submit" value="book now" name="gorgorothHotel"></input></a>
             <?php } ?>
 
         </section>
@@ -105,7 +115,8 @@ include('function.php')?>
 
   </body>
 
-  <footer class="footerContainer">
+  <footer>
+    <?php include("footer.php") ?>
   </footer>
 
 

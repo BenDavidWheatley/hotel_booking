@@ -20,13 +20,34 @@ class BookingInformation {
     private $hotel;
     private $checkIn;
     private $checkOut;
-    private $numOfAdults;
+    private $numberOfAdults;
     private $numberOfChildren;
-    private $numberOfDays;
+    public $numberOfDays;
     private $email;
+    public $adultRate;
+    public $childRate;
+    private $adultTotalCost;
+    private $childTotalCost;
+    private $totalCost; 
 
-    //Methods
- 
+    //hotel rates
+
+    public $gorgorothAdultRate = 1800;
+    public $gorgorothChildRate = 800;
+    public $overlookAdultRate = 2500;
+    public $overlookChildRate = 1500;
+    public $budapestAdultRate = 3000;
+    public $budapestChildRate = 2000;
+    public $transylvaniaAdultRate = 2200;
+    public $transylvaniaChildRate = 1500;
+
+    //Compared hotel variables
+
+    private $transylvaniaCompare; 
+    private $gorgorothCompare;
+    private $budapestCompare;
+    private $overlookCompare;
+
     //Setters
     public function setName ($name){
         $this->name = $name;
@@ -56,6 +77,48 @@ class BookingInformation {
         $diff = strtotime($checkOut) - strtotime($checkIn); 
         $this->numberOfDays = (abs(round($diff / 86400))) + 1; // 86400 is the number of seconds in the day. Adding 1 includes the day booked
     }
+    public function setRates($hotelSelect) {      
+        switch ($hotelSelect){
+            case "Gorgoroth Hotel":
+                $this->adultRate = $this->gorgorothAdultRate;
+                $this->childRate = $this->gorgorothChildRate;
+              break;
+            case "The Overlook Hotel":
+                $this->adultRate = $this->overlookAdultRate;
+                $this->childRate = $this->overlookChildRate;
+              break;
+            case "Grand Budapest Hotel":
+                $this->adultRate = $this->budapestAdultRate;
+                $this->childRate  = $this->budapestChildRate;
+              break;
+            case "Hotel Transylvania":
+                $this->adultRate = $this->transylvaniaAdultRate;
+                $this->childRate  = $this->transylvaniaChildRate;
+              break;
+          }
+        }   
+
+    public function setTotalCost() {
+        $this->adultTotalCost=($this->numberOfAdults * $this->adultRate) * $this->numberOfDays;
+        $this->childTotalCost=($this->numberOfChildren * $this->childRate) * $this->numberOfDays;
+        $this->totalCost= ($this->adultTotalCost + $this->childTotalCost);
+        }
+
+    public function setTransCompare(){
+        $this->transylvaniaCompare = (($this->numberOfAdults * $this->transylvaniaAdultRate) + ($this->numberOfChildren * $this->transylvaniaChildRate)) * $this->numberOfDays;
+        }
+    
+    public function setbudapestCompare(){
+        $this->budapestCompare = (($this->numberOfAdults * $this->budapestAdultRate) + ($this->numberOfChildren * $this->budapestChildRate)) * $this->numberOfDays;
+        }
+
+    public function setGorgorothCompare(){
+        $this->gorgorothCompare = (($this->numberOfAdults * $this->gorgorothAdultRate) + ($this->numberOfChildren * $this->gorgorothChildRate)) * $this->numberOfDays;
+        }
+
+    public function setOverlookCompare(){
+        $this->overlookCompare = (($this->numberOfAdults * $this->overlookAdultRate) + ($this->numberOfChildren * $this->overlookChildRate)) * $this->numberOfDays;
+        }
 
     //Getters
     public function getName(){
@@ -85,9 +148,34 @@ class BookingInformation {
     public function getEmail(){
         echo $this->email;
     }
-}
-   
-// Setting of the variables from the form submition
+    public function getAdultRate(){
+        echo $this->adultRate;
+    }
+    public function getChildRate(){
+        echo $this->childRate;
+    }
+    public function getAdultCostTotal(){
+        echo $this->adultTotalCost;
+    }
+    public function getChildCostTotal(){
+        echo $this->childTotalCost;
+    }
+    public function getTotalCost(){
+        echo $this->totalCost;
+    }
+    public function getTransCompare(){
+        echo $this->transylvaniaCompare;
+    }
+    public function getGorgorothCompare(){
+        echo $this->gorgorothCompare;
+    }
+    public function getBudapestCompare(){
+        echo $this->budapestCompare;
+    }
+    public function getOverlookCompare(){
+        echo $this->overlookCompare;
+    }   
+} 
 
 $newBooking = new BookingInformation;
     $newBooking->setName($_SESSION['name']);
@@ -99,69 +187,12 @@ $newBooking = new BookingInformation;
     $newBooking->setNumOfChildren($_SESSION['numChildren']);
     $newBooking->setEmail($_SESSION['email']);
     $newBooking->setNumberOfDays($_SESSION['checkIn'], $_SESSION['checkOut']);
+    $newBooking->setRates($_SESSION['hotels']);
+    $newBooking->setTotalCost();
+    $newBooking->setTransCompare();
+    $newBooking->setGorgorothCompare();
+    $newBooking->setBudapestCompare();
+    $newBooking->setOverlookCompare();
 
-switch ($_SESSION['hotels']){
-    case "Gorgoroth Hotel":
-        $rateAdult = 1800;
-        $rateChild = 800;
-      break;
-    case "The Overlook Hotel":
-        $rateAdult = 2500;
-        $rateChild = 1500;
-      break;
-    case "Grand Budapest Hotel":
-        $rateAdult = 3000;
-        $rateChild = 2000;
-      break;
-    case "Hotel Transylvania":
-        $rateAdult = 2200;
-        $rateChild = 1500;
-      break;
-  }
-    $_SESSION['adultCost'] = (3 /*number of adults*/ * $rateAdult) *  2 /*number of days*/;
-    $_SESSION['childCost'] = (3 /*number of children*/ * $rateChild) *  2 ;
-    $_SESSION['totalCost'] = $_SESSION['adultCost'] + $_SESSION['childCost'];
-
-/*
-
-//the below old code is currently being used and working
-
-$_SESSION['gorgorothAdultRate'] = 1800;
-$_SESSION['gorgorothChildRate'] = 800;
-
-$_SESSION['budapestAdultRate'] = 3000;
-$_SESSION['budapestChildRate'] = 2000;
-
-$_SESSION['transylvaniaAdultRate'] = 2200;
-$_SESSION['transylvaniaChildRate'] = 1300;
-
-$_SESSION['overlookAdultRate'] = 2500;
-$_SESSION['overlookDayChildRate'] = 1500;
-
-if($_SESSION['hotels'] === "Gorgoroth Hotel"){
-    $rateAdult = $_SESSION['gorgorothAdultRate'];
-    $rateChild = $_SESSION['gorgorothChildRate'];
-    $_SESSION['adultCost'] = ($_SESSION['adults'] * $_SESSION['gorgorothAdultRate']) * $_SESSION['days'];
-    $_SESSION['childCost'] = ($_SESSION['children'] * $_SESSION['gorgorothChildRate']) * $_SESSION['days'];
-    $_SESSION['totalCost'] = $_SESSION['adultCost'] + $_SESSION['childCost'];
-} elseif ($_SESSION['hotels'] === "The Overlook Hotel") {
-    $rateAdult = $_SESSION['overlookAdultRate'];
-    $rateChild = $_SESSION['overlookDayChildRate'];
-    $_SESSION['adultCost'] =  ($_SESSION['adults'] * $_SESSION['overlookAdultRate']) * $_SESSION['days'];
-    $_SESSION['childCost'] = ($_SESSION['children'] * $_SESSION['overlookDayChildRate']) * $_SESSION['days'];
-    $_SESSION['totalCost'] =  $_SESSION['adultCost'] + $_SESSION['childCost'];;
-} elseif ($_SESSION['hotels'] === "Grand Budapest Hotel") {
-    $rateAdult = $_SESSION['budapestAdultRate'];
-    $rateChild = $_SESSION['budapestChildRate'];
-    $_SESSION['adultCost'] =  ($_SESSION['adults'] * $_SESSION['budapestAdultRate']) * $_SESSION['days'];
-    $_SESSION['childCost'] = ($_SESSION['children'] * $_SESSION['budapestChildRate']) * $_SESSION['days'];
-    $_SESSION['totalCost'] =  $_SESSION['adultCost'] + $_SESSION['childCost'];;
-} elseif ($_SESSION['hotels'] === "Hotel Transylvania") { 
-    $rateAdult = $_SESSION['transylvaniaAdultRate'];
-    $rateChild = $_SESSION['transylvaniaChildRate'];
-    $_SESSION['adultCost'] =  ($_SESSION['adults'] * $_SESSION['transylvaniaAdultRate']) * $_SESSION['days'];
-    $_SESSION['childCost'] = ($_SESSION['children'] * $_SESSION['transylvaniaChildRate']) * $_SESSION['days'];
-    $_SESSION['totalCost'] =  $_SESSION['adultCost'] + $_SESSION['childCost'];
-} */
-
+$newConfirmation = new BookingInformation;
 ?>

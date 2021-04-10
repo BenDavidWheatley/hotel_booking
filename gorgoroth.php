@@ -10,15 +10,10 @@ include('function.php');
     <title>Hotel Gorgoroth</title>
   </head>
 
-  <header class='headerContainer'>
-    <nav class="navigation">
-      <a href="index.php"><p>Home</p></a>
-      <a href="gorgoroth.php"><p>Hotel Gorgoroth</p></a>
-      <a href="budapest.php"><p>Grand Budapest Hotel</p></a>
-      <a href="shining.php"><p>The Overlook Hotel</p></a>
-      <a href="transylvania.php"><p>Hotel Transylvania</p></a>
-    </nav>
+  <header>    
+    <?php include('header.php') ?>
   </header>
+
   <body id='mainBody'>
 
   <!-- Main image and title -->
@@ -68,7 +63,8 @@ include('function.php');
 
 
   </body>
-  <footer class="footerContainer">
+  <footer>
+    <?php include("footer.php") ?>
   </footer>
 
   </body>
