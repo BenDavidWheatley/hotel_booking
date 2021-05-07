@@ -1,68 +1,378 @@
 /*
-#15A083
-#F3CF3E
-#ebebeb
-#ffffff
+#EDC7B7 - CREAM
+#EEE2DC - LIGHT GREY
+#BAB2B5 - DARK GREY
+#123C69 - BLUE
+#AC3B61 - RED
 */
+
+@font-face{
+    font-family: "montserratLight";
+    src: url(../assets/fonts/Montserrat/Montserrat-Thin.ttf);
+}
+@font-face{
+    font-family: "montserratReg";
+    src: url(../assets/fonts/Montserrat/Montserrat-Regular.ttf);
+}
+@font-face{
+    font-family: "montserratLarge";
+    src: url(../assets/fonts/Montserrat/Montserrat-SemiBold.ttf);
+}
+@font-face{
+    font-family: "robotoReg";
+    src: url(../assets/fonts/Roboto/Roboto-Regular.ttf);
+}
+@font-face{
+    font-family: "robotoBold";
+    src: url(../assets/fonts/Roboto/Roboto-Bold.ttf);
+}
 
 
 /*  General Styling */
 
 *{
     margin: 0px;
+    font-family: 'robotoReg';  
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: "montserratLarge";
+}
+input, select, label, button, #mainBanner p, #dateValidation, #dateValidationTwo {
+    font-family: "montserratReg";
+}
+label {
+    margin-top: 15px;
+}
+span {
+    font-family: "robotoBold";  
 }
 
-.headerContainer, .footerContainer {
-    display: flex;
-    background-color:black;
+/* header and footer */
+#logo {
     height: 40px;
 }
-.headerContainer p, .footerContainer p{
+#hamburger{
+    height: 40px;
+    display: none;
+}
+#mainHeading img {
+    height: 100px   ;
+}
+#headerContainer {
+    background-color:#123c69; 
+    height: 80px;
+    display: grid;
+    grid-template-columns: 18% 15% 17% 17% 15% 18%;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+}
+#headerContainer a {
+    text-decoration: none;
+}
+#headerContainer p{
+    color: white;
+    font-family:  "montserratReg";  
+    padding-left: 30px;
+    padding-right: 30px;
+}
+#headerContainer p:hover{
+    color: #BAB2B5;
+    border-bottom: 1px solid #BAB2B5; 
+    padding: 5px;
+}
+.footerContainer{  
+    background-color:  #123c69;
+    height: 200px;   
+    padding: 20px;
+    text-align: center;
+}
+.footerContainer h2 {
+    color: white;
+    padding: 30px;
+}
+#mainFooter {
+   margin-top: 1600px;
+}
+#bookingFooter{
+    margin-top: 775px;
+}
+#comparedFooter{
+    margin-top: 120px;
+}
+#socialContainer {
+    display: flex;
+    justify-content: center;
+    margin: auto; 
+}
+#socialContainer img{
+    height: 50px;
+    width: auto;
+}
+#socialContainer a{
+    margin-left: 3%;
+    margin-right: 3%;
+}
+/* Main page styling */
+
+#mainBanner {
+    text-align: center;
+    margin: 4%;
+}
+.body {
+    background-color: #fcfef8;
+    background-image: url(../assets/images/main_page/parachute.png);
+    background-repeat: no-repeat;
+    position: relative;
+    background-position: 0 780px !important;
+}
+
+/* form styling */
+
+#formContainer{
+    display:flex;
+    justify-content: center;
+    width: 100%;
+    height: 20%;
+}
+#form{
+    width: 400px;  
+    display: grid;
+    background-color: 	#1DB954cc;
+    border-radius: 10px;
+    padding: 2%;
+    grid-template-columns: 100%;
+    text-align: center; 
+    box-shadow: 2px 5px 5px 2px #222;
+}
+#form h2 {
+    margin-bottom: 20px;
+}
+#form label, #form input, #form button, #form select {
+    padding: 3px; 
+}
+.bookingContainer{
+    width: 100%;
+}
+.bookingContainer, .informationContainer{
+     position: absolute;
+}
+.informationContainer, #errorContainer{
+    display: flex;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    backdrop-filter: blur(3px);
+    transform:  translateY(-80px);    
+}
+label{
+    color: white;
+    font-family:'montserratLarge';
+    color: black;
+    margin-top: 1.5em;
+    margin-bottom: 0.4em;
+    font-size: 1.2em;
+}
+input, select, #hotels {
+    height: 2.5em;
+    background-color:#f5f5f5;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 5px;
+    text-align: center;
+    box-shadow: 2px 5px 5px 2px #222;
+}
+input:focus, select:focus, #hotels:focus{
+    background-color: #f1f1f1;
+    padding: 3px 0px 3px 3px;
+    margin: 5px 1px 3px 0px;
+    border: 1px solid #FD9528;
+    outline:none; 
+}
+#form input{
+    font-family:'montserratLarge';
+}
+#form select {
+    height: 3em;
+}
+#form button, #selectedHotelButtons button, #error button, .buttonContainer button, .buttonContainer input, .buttons, #confirmedBookingButton {
+    width: 98%;
+    height: 3em;
+    margin: auto;
+    margin-top: 3em;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 2px 5px 5px 2px #222;
+    outline:none; 
+    color: white;
+    background-color: black;
+}
+#form button {
+    font-size: 1.2em;
+    font-family:'montserratLarge';
+}
+#selectedHotelButtons button, #error button, .buttons, #confirmedBookingButton {
+    width: 30%;
+    margin: 10px; 
+    color: black;
+    background-color: white;
+    font-family:'montserratLarge';
+    font-size: 1em;
+}
+.buttonContainer a, .buttonContainer form, #confirmedBookingButton {
+    width: 100%;  
+}
+.buttonContainer a{
+    margin-right: 20px;
+}
+.buttonContainer form{
+    margin-left: 20px;
+}
+.comparedContainer{
+    position: relative;
+}
+.buttonContainer{
+    position: absolute; 
+    bottom: 30px; 
+    width: 75%;
+}
+.buttonContainer button, .buttonContainer input{
+    background-color: white;
+    width: 100%;
+    font-family:'montserratLarge';
+    color: black;
+}
+#error button {
+    width: 100%;
+}
+#selectedHotelButtons button:hover, #error button:hover, .buttonContainer button:hover, .buttonContainer input:hover, .buttons:hover, #confirmedBookingButton:hover{
+    color: white;
+    background-color:#1DB954cc;
+}
+.buttons{
+    width: 30%;
+    margin: 0px;
+    margin: auto;
+}
+.chosenButtons{
+    margin: auto;
+    margin-top: 30px;
+    display: flex;
+}
+#selectedHotelButtons {
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+}
+#form button:hover {
+    background-color: white;
+    color: black;
+}
+#chosenInfoContainer{
+    margin: auto;
+    margin-top: 5px;
+}
+#chosenInfo{
+    margin-top: 60px;
+}
+.listedActivities{
+    margin-bottom: 50px
+}
+/* Form pop ups */
+
+.selectedInformation, #error{
+    justify-content: center;
+    margin: auto;
+    padding: 5%;
+    border: 1px black solid;
+    border-radius: 10px;
+    background-color: #111e;
+    color: lightgrey;
+}
+#thankYouFor{
+    font-size: 1.5em;
+}
+.selectedInformation h3, #notSure{
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+.selectedInformation span, .selectedInformation h3 {
     color: white;
 }
-.navigation{
-    display: flex;
+#info{
     margin: auto;
-    justify-items: center;
+    width: 70%;
 }
-.navigation a {
-    margin-left: 30px;
-    margin-right: 30px;
+#error{
+    text-align: center;   
 }
-.image {
-    width: 100%;
+#error p {
+    font-family: "montserratReg";
+    color: white;
+    padding: 20px;
+}
+#dateValidation, #dateValidationTwo {
+    color: #AC3B61;
+    font-size: 1.5em;
+    margin-top: 10px;
 }
 
 /* Hotel comparision - compare.php */
 
+#comparedBody{
+    background-image: url(../assets/images/main_page/parachute.png);
+    background-repeat: no-repeat; 
+    backdrop-filter: blur(3px);
+    background-color: #fcfef8;
+    position: relative;
+    background-position: 0 450px !important;
+}
 #hotelContainer {
     display: grid;
     grid-template-columns: auto auto auto;
-    grid-template-rows: 60% 40%;
-    grid-gap: 20px;
-    height: 1000px;
-    width: 80%;
-    background-color: grey;
+    grid-template-rows: 45% 10% 45%;
+    grid-gap: 20px;    
+    width: 90%;
+    margin: auto;
+    margin-top: 40px;
 }
 #selectedHotel{
     grid-column-start: 1;
     grid-column-end: 4;
     grid-row-start: 1;
     grid-row-end: 2;
-    background-color: #15A083;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 50% 50%;
+    padding-bottom: 10%;
 }
-#comparedOne, #comparedTwo, #comparedThree {
+.comparedContainer  {
+    background-color: #000d;
+    border-radius: 10px;
+    padding: 20px;  
+    color: lightgrey;
+}
+.comparedContainer  span, .comparedContainer  h3 {
+    color: white;
+}
+#comparedHeader {
+    text-align: center;
+    margin-top: 30px;
     grid-row-start: 2;
     grid-row-end: 3;
-    background-color: white;
+    grid-column-start: 1;
+    grid-column-end: 4;   
 }
-#selectedHotel img {
+#comparedOne, #comparedTwo, #comparedThree{
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+#comparedOne img, #comparedTwo img, #comparedThree img, #selectedHotel img  {
     width: 100%;
     height: auto;
-}
-#comparedOne img, #comparedTwo img, #comparedThree img {
-    width: 100%;
-    height: auto;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border: 1px lightgrey solid;
 }
 #comparedTwo{
     grid-column-start: 2;
@@ -72,6 +382,16 @@
     grid-column-start: 3;
     grid-column-end: 4;
 }
+.compText {
+    text-align: center;
+}
+.comparedText{
+    margin: auto;
+    width: 80%;
+}
+.buttonContainer{
+    display: flex;
+}
 
 /* Hotel Information - shining.php, transylavania.php, budapest.php, gorgoroth.php*/ 
 
@@ -79,7 +399,8 @@
     display: grid;
     grid-template-columns: 33.3% 33.3% 33.3%;
     grid-template-rows: 25% 25% 25% 25%;
-    height: 80%;   
+    height: 80%;  
+    padding: 20px; 
 }
 .titleImage{
     grid-column-start: 1;
@@ -89,6 +410,7 @@
 }
 .titleImage img {
     width: 100%;
+    border-radius: 10px;
 }
 .titleTextBox, .titleTextBoxShadow {
     display: flex;
@@ -97,44 +419,95 @@
     grid-column-end: 3;
     grid-row-start: 4;
     grid-row-end: 5; 
-    transform: skew(15deg) translate(-30px);
+    transform: skew(15deg) translate(-50px);
     align-items: center;
-    background-color: #F3CF3E;
+    border-radius: 5px;
+    background-color: #1DB954;
     animation-name: titleSweep;
     animation-duration: 1.5s;
 }
 .titleTextBoxShadow {
-    background-color: black;
+    background-color: #111e;
     animation-name: titleShadowSweep;
     animation-duration: 1.5s;
-    transform: skew(15deg) translate(-15px) translateY(10px);
+    transform: skew(15deg) translate(-40px) translateY(10px);
 }
-.titleTextBox p{
+.titleTextBox h2{
     font-size: 200%;
     transform: skew(-15deg);
     margin: auto;
-    color: white;
+    color: black;
     animation-name: titleWordSweep;
     animation-duration: 2s;
 }
-.topTitleLine {
-    background-color: white;
-    height: 20px;
+#overlookLineShadow, #overlookTextBox{
+    grid-row-start: 1;
+    grid-row-end: 2; 
+    margin-top: 100px;
+}
+.about{
+    width: 90%;
+    height: auto;
+    margin: auto;
+    margin-top: 50px; 
+    display: grid;
+    grid-template-columns: 30% 20% 50%;  
+    grid-template-rows: 35% 30% 25% 10%; 
+}
+.aboutText p{
+    line-height: 1.5em;
+}
+.aboutText h1 {
+    margin-bottom: 20px;
+}
+.aboutText{
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    font-size: 1.1em;
+    height: auto;
+    width: 70%;
+    border-radius: 5px;
+    box-shadow: 20px 20px 5px#222;
+    height: 100%;
+    padding: 40px;
+    margin-bottom:300px;
+    background-color: lightgrey;
+}
+.activitieContainer{
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    padding: 20px; 
+    padding-bottom: 30px;
+    background-color: #1DB954;
+    color: black; 
+    box-shadow: -20px 20px 5px#222;
     grid-column-start: 2;
-    grid-column-end: 5;
-    grid-row-start: 2;
-    grid-row-end: 3;
-    transform: skew(15deg); 
-    animation-name: topTitleLineSweep;
-    animation-duration: 2s;  
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 4;  
+    margin-bottom: 0px; 
+}
+.activitieContainer h2, .activitieContainer p {
+    color: black;
+    margin-bottom: 10px;
+}
+.activitiesList{
+    font-size: 1em;
+    line-height: 1.5em;
+}
+.hotelBody{
+    background-image: url(../assets/images/main_page/backdrop_Light.png);
 }
 @keyframes titleSweep {   
     0% {transform: skew(15deg) translate(-1500px)}
-    100% {transform: skew(15deg) translate(-30px);}
+    100% {transform: skew(15deg) translate(-50px);}
 }
 @keyframes titleShadowSweep  {   
     0% {transform: skew(15deg) translate(-1200px) translateY(10px)}
-    80% {transform: skew(15deg) translate(-15px) translateY(10px);}
+    80% {transform: skew(15deg) translate(-40px) translateY(10px);}
 }
 @keyframes titleWordSweep  {   
     20% {transform: skew(-15deg) translate(-1000px)}
@@ -142,9 +515,319 @@
 }
 @keyframes topTitleLineSweep {
     0% {transform: skew(15deg) translate(1000px)}
-    100% {transform: skew(15deg) translate(0px);}
+    100% {transform: skew(15deg) translate(50px);}
 }
 
+@media only screen and (max-width: 768px){
+
+    #headerContainer{
+        background-color:#123c69; 
+        height: 30px;
+        display: grid;
+        grid-template-columns: 20% 60% 20%;
+        grid-template-rows: auto auto auto auto auto;
+        justify-items: center;
+        align-items: center;
+        padding-bottom: 60px;
+        padding-top: 20px
+    }
+    #logoHeader {
+        text-decoration: none;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        margin-left: 40px;
+    }
+    #gorAnchor, #budAnchor, #overlookAnchor, #transAnchor{
+        grid-column-start: 2;
+        grid-column-end:3;
+    }
+    #gorAnchor {
+        grid-row-start: 2;
+    }
+    #budAnchor {
+        grid-row-start: 3;
+    }
+    #overlookAnchor{
+        grid-row-start: 4;
+    }
+    #transAnchor {
+        grid-row-start: 5;
+    }
+    #headerContainer p{     
+        padding-left: 5px;
+        padding-right: 5px;
+        display: none;
+    }
+    #headerContainer p:hover{
+        color: #BAB2B5;
+        border-bottom: 1px solid #BAB2B5; 
+        padding: 0px;
+    }
+    #headerContainer #logo{
+        grid-column-start: 1;
+        grid-column-end: 2;
+        height: 60px;
+    }
+    #hamburger{
+        height: 40px;
+        display: block;  
+        grid-column-start: 3; 
+        grid-column-end: 4;  
+        margin-right: 40px;
+    }
+    .body {
+        background-position: 0 950px !important;
+    }
+    #socialContainer img{    
+        width: auto;
+        margin: 20px;    
+    }
+    #mainHeading #logo{
+        display: none;
+    }
+    #mainHeading {
+        margin-top: 60px;
+        margin-bottom: 60px;
+    }
+    .informationContainer, #errorContainer{
+        transform:  translateY(-140px);  
+        padding-top: 100px;  
+    }
+    .selectedInformation {
+        margin: 20px;
+        margin-bottom: 100px;
+    } 
+    .titleTextBox h2{
+        font-size: 100%;
+    }
+    .about{
+        width: 95%;
+        height: 100%;
+        margin: auto;
+        margin-top: 0px; 
+        margin-bottom: 10px;
+        display: grid;
+        grid-template-columns: 100%;/*30% 20% 50%; */ 
+        grid-template-rows: 60% 40%;/*35% 10% 25% 10%; */
+    }
+    .aboutText p{
+        line-height: 1.6em;
+        font-size: 0.8em;
+        padding: 3%;
+    }
+    .aboutText h1 {
+        margin-bottom: 1%;
+        margin-top: 0px;
+        font-size: 1.5em;
+        padding: 3%;
+    }
+    .aboutText{    
+        font-size: 1.2em; 
+        width: 100%; 
+        height: 70%;
+        padding: 0%;
+        margin-left: 0px;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        box-shadow: none;   
+    }
+    .activitieContainer{
+        width: 100%;   
+        height: 90%;
+        grid-column-start: 1;
+        grid-column-end: 4;
+        grid-row-start: 2;
+        grid-row-end: 3;  
+        margin: 0px;
+        margin-bottom: 0px; 
+        padding: 0px;
+        box-shadow: none;
+    }
+    .activitieContainer p, .activitieContainer h2 {
+        padding: 3%;
+    }
+    .activitieContainer p, .activitieContainer li{
+        font-size: 1em;
+    }
+    #hotelContainer{
+        display: block;
+    }
+    #selectedHotel{
+        display: block;
+    }
+    #comparedHeader h1{
+        margin-top: 10%;
+        margin-bottom: 4%;
+    }
+    .comparedContainer{
+        margin-bottom: 4%;
+    }
+    .buttonContainer {
+        margin-top: 5em;
+    }
+    .buttonContainer input {
+        margin-top: 2em;
+    }
+    .buttonContainer Button {
+        margin-top: 6em;
+    }
+    .buttonContainer a{
+        margin-right: 0px;
+    }
+    .comparedText {
+        margin-bottom: 100px;;
+    }
+    #comparedBody{
+        background-image: none;
+    }
+    .listedActivities {
+        margin-bottom: 0px;
+    }
+}
+@media only screen and (max-width: 550px){
+    .titleTextBox, .titleTextBoxShadow {
+        display: flex;
+        height: 70%;
+        grid-column-start: 1;
+        grid-column-end: 4;
+    }
+    .footerContainer h2 {    
+        padding: 5px;
+        font-size: 15px;;
+    }
+    #mainFooter {
+        margin-top: 1500px;
+        height: 100px;
+     }
+    .footerContainer{  
+         height: 100px;
+         padding: 20px;
+     }
+    #socialContainer {
+        display: flex;
+        justify-content: center;
+        margin: none; 
+    }
+    #socialContainer img{
+        height: auto;
+        width: 80%;
+        margin: 10px
+    }
+    #formContainer{
+        margin-bottom: 20px;  
+    }
+    #form{
+        width: 100%;
+        padding: 10px;
+        margin: 20px;
+    }
+    #form button {
+        margin-bottom: 20px;
+    }
+    .body{
+        background-image: none;
+    }
+    #selectedHotel img{
+        margin-bottom: 0px;
+    }
+    #selectedHotelButtons{
+        display: grid;
+        grid-template-rows: auto auto auto;
+        width: 100%;
+        margin: auto;  
+    }
+    #selectedHotelButtons button {
+        width: 100%;
+    }
+    .selectedInformation {
+        margin: 20px;
+        margin-bottom: auto;
+    }
+    .informationContainer, #errorContainer{
+        transform:  translateY(-200px);  
+        padding-top: 100px;      
+    }
+    #info{
+        height: 100%;
+        margin: 0px;
+        width: 100%;
+    }
+    .modelContainer{
+        padding: 0px;
+        border-radius: 0px;
+    }
+    .titleImage img {
+        height: 100%;
+        border-radius: 0px;
+    }
+    .about{    
+        grid-template-columns: 100%;
+        grid-template-rows: 60% 40%;
+    }
+    .aboutText p{
+        line-height: 1.5em;
+        font-size: 0.8em;
+        padding: 3%;
+    }
+    .aboutText h1 {
+        margin-bottom: 2%;
+        margin-top: 0px;
+        font-size: 1.4em;
+        padding: 3%;
+    }
+    .aboutText{    
+        font-size: 1.2em; 
+        width: 100%; 
+        height: 95%;
+    }
+    .activitieContainer{
+        width: 100%;   
+        height: 90%; 
+        box-shadow: none;
+    }
+    .activitieContainer p, .activitieContainer h2 {
+        padding: 3%;
+    }
+    .activitieContainer p, .activitieContainer li{
+        font-size: 1em;
+    }
+    .chosenButtons {
+        display: grid;
+        grid-template-rows: auto auto auto;
+        margin-bottom: 40px;
+    }
+    .buttons {
+        width: 100%;
+        margin-bottom: 2em;
+    }
+    #bottomButton {
+        margin-bottom: 0em;
+    }
+    .comparedContainer img{
+        margin-bottom: 0px;
+    }
+    .comparedText {
+        margin-bottom: 0px;
+        width: 100%;
+    }
+    .buttonContainer{
+        display: grid;
+        position: relative;
+        grid-template-rows: auto auto;
+        margin: auto;
+        width: 100%;
+    }
+    .buttonContainer form{
+        margin: 0px;
+    }
+    #confirmedBookingButton{
+        margin: 0px;      
+    }
+    #emailSent{
+        transform:  translateY(80px); 
+    }
+
+}
 
 
 

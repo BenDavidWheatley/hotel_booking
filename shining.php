@@ -14,34 +14,47 @@ include('function.php');?>
     <?php include('header.php') ?>
   </header>
   
-  <body id='mainBody'>
+  <body class='hotelBody'>
 
 <!-- Main image and title -->
     <div class="modelContainer">
       <section class="titleImage">
-        <img  src="assets/images/shining/the_shining.jpeg">
+        <img  src="assets/images/shining/the_shining.jpeg" alt='The overlook hotel in the snow, with mountains and forest in the back'>
       </section>
-      <section class="topTitleLine">
-        <div></div>
+      
+      <section id="overlookLineShadow" class='titleTextBoxShadow'>   
       </section>
-      <section class='titleTextBoxShadow'>   
-      </section>
-      <section class='titleTextBox'>
-        <p>THE OVERLOOK HOTEL</p>  
+      <section id="overlookTextBox" class='titleTextBox'>
+        <h2>The Overlook Hotel  </h2>  
       </section>    
     </div>
     <br>
 
     <div class="about">
-      <h3>About The Overlook Hotel</h3>
-      <p>The Shining is a 1980 psychological horror film produced and directed by Stanley Kubrick and co-written with novelist Diane Johnson. The film is based on Stephen King's 1977 novel of the same name and stars Jack Nicholson, Shelley Duvall, Scatman Crothers, and Danny Lloyd.
-
-  The film's central character is Jack Torrance (Nicholson), an aspiring writer and recovering alcoholic who accepts a position as the off-season caretaker of the isolated historic Overlook Hotel in the Colorado Rockies. Wintering over with Jack are his wife, Wendy Torrance (Duvall), and young son, Danny Torrance (Lloyd). Danny is gifted with "the shining", psychic abilities that enable him to see into the hotel's horrific past. The hotel cook, Dick Hallorann (Crothers), also has this ability and is able to communicate with Danny telepathically. The hotel had a previous winter caretaker who went insane and killed his family and himself. After a winter storm leaves the Torrances snowbound, Jack's sanity deteriorates due to the influence of the supernatural forces that inhabit the hotel, placing his wife and son in danger.</p>
-
+      <div class="aboutText">
+        <h1>About The Overlook Hotel</h1>
+        <p>At the Overlook hotel, you will be greated by Jack Torrance, 
+          an aspiring writer and recovering alcoholic who is the caretaker
+          of the isolated historic Overlook Hotel in the Colorado Rockies. Wintering over with Jack are his wife,
+          Wendy Torrance, and young son, Danny Torrance. Danny is gifted with "the shining", 
+          psychic abilities that enable him to see into the hotel's horrific past. The hotel cook, Dick Hallorann, 
+          also has this ability and is able to communicate with Danny telepathically. 
+          The hotel had a previous winter caretaker who went insane and killed his family and himself.
+          After a winter storm leaves the Torrances snowbound, Jack's sanity deteriorates due to the influence 
+          of the supernatural forces that inhabit the hotel, placing his wife and son in danger.</p>
+      </div>
+      <div class='activitieContainer'>
+        <h2>Activities</h2>
+        <p>The Overlook Hotel offers activies, including - </p>    
+        <?php $overlookActivities->getActivities();?>
+      </div>
     </div>
   </body>
 
   <footer>
       <?php include("footer.php") ?>
   </footer>
+
+  <script src="script/menu.js" type="text/javascript"></script>
+
 </html>

@@ -1,6 +1,4 @@
-<?php  session_start();
-
-  
+<?php  session_start();  
 if(isset($_POST['submit'])){
   $_SESSION['name'] = $_POST['name']; 
   $_SESSION['surname'] = $_POST['surname'];
@@ -12,11 +10,46 @@ if(isset($_POST['submit'])){
   $_SESSION['email'] = $_POST['email'];
 }
 
+/* The following class creates a list of activities */
+
+class HotelActivities {
+    private $activities = array();
+
+    public function setActivities(...$arguments) {
+        foreach ($arguments as $activities) {
+            array_push($this->activities, $activities);             
+        }
+    }
+    public function getActivities(){
+            ?><ul><?php         
+            for ($x = 0; $x < count($this->activities); $x++) {
+            ?>           
+            <li class="activitiesList"><?php echo $this->activities[$x];?></li>           
+            <?php       
+        }?></ul><?php
+    } 
+} 
+
+$gorgorothActivities = new HotelActivities;
+    $gorgorothActivities->setActivities("Drake riding", "Caragor riding", "Running away from the local Orcs", "Avoiding the ever watching eye of Sauron" );  
+
+$budapestActivities = new HotelActivities;
+    $budapestActivities->setActivities("Skiing", "Avoiding the local authorities as they may accuse you of murder" );
+
+$overlookActivities = new HotelActivities;
+    $overlookActivities->setActivities("Trying not to go insane", "Avoiding the elevators of blood", "Avoiding the twins", "Getting lost in the maze" );
+
+$transylaviaActivities = new HotelActivities;
+    $transylaviaActivities->setActivities("Trying not to let it be know that you are not a monster", "Dressing up; you'll need a disquise every day");
+
 // Class with all the information regarding the booking
 
 class BookingInformation {
+
+    // Booking details variables
     private $name;
     private $surname;
+    private $fullname;
     private $hotel;
     private $checkIn;
     private $checkOut;
@@ -24,22 +57,27 @@ class BookingInformation {
     private $numberOfChildren;
     public $numberOfDays;
     private $email;
+
+    // Booking cost variables
+
     public $adultRate;
     public $childRate;
     private $adultTotalCost;
     private $childTotalCost;
     private $totalCost; 
+    private $finalHotelSelection;
+    private $finalCost;
 
     //hotel rates
 
-    public $gorgorothAdultRate = 1800;
-    public $gorgorothChildRate = 800;
-    public $overlookAdultRate = 2500;
-    public $overlookChildRate = 1500;
-    public $budapestAdultRate = 3000;
-    public $budapestChildRate = 2000;
-    public $transylvaniaAdultRate = 2200;
-    public $transylvaniaChildRate = 1500;
+    public $gorgorothAdultRate = 800;
+    public $gorgorothChildRate = 600;
+    public $overlookAdultRate = 1000;
+    public $overlookChildRate = 650;
+    public $budapestAdultRate = 1300;
+    public $budapestChildRate = 1000;
+    public $transylvaniaAdultRate = 1100;
+    public $transylvaniaChildRate = 900;
 
     //Compared hotel variables
 
@@ -49,11 +87,15 @@ class BookingInformation {
     private $overlookCompare;
 
     //Setters
+
     public function setName ($name){
         $this->name = $name;
     }  
     public function setSurname ($surname){
         $this->surname = $surname;
+    }
+    public function setFullname () { 
+        $this->fullname = $this->name . " " . $this->surname;
     }
     public function setHotel ($hotel){
         $this->hotel = $hotel;
@@ -75,7 +117,7 @@ class BookingInformation {
     }
     public function setNumberOfDays($checkIn, $checkOut){
         $diff = strtotime($checkOut) - strtotime($checkIn); 
-        $this->numberOfDays = (abs(round($diff / 86400))) + 1; // 86400 is the number of seconds in the day. Adding 1 includes the day booked
+        $this->numberOfDays = (abs(round($diff / 86400))); // 86400 is the number of seconds in the day. Adding 1 includes the day booked
     }
     public function setRates($hotelSelect) {      
         switch ($hotelSelect){
@@ -104,21 +146,34 @@ class BookingInformation {
         $this->totalCost= ($this->adultTotalCost + $this->childTotalCost);
         }
 
-    public function setTransCompare(){
+    //the following functions set the comparisons of the hotel costing
+
+    public function setHotelCompare(){
         $this->transylvaniaCompare = (($this->numberOfAdults * $this->transylvaniaAdultRate) + ($this->numberOfChildren * $this->transylvaniaChildRate)) * $this->numberOfDays;
-        }
-    
-    public function setbudapestCompare(){
         $this->budapestCompare = (($this->numberOfAdults * $this->budapestAdultRate) + ($this->numberOfChildren * $this->budapestChildRate)) * $this->numberOfDays;
-        }
-
-    public function setGorgorothCompare(){
         $this->gorgorothCompare = (($this->numberOfAdults * $this->gorgorothAdultRate) + ($this->numberOfChildren * $this->gorgorothChildRate)) * $this->numberOfDays;
-        }
-
-    public function setOverlookCompare(){
         $this->overlookCompare = (($this->numberOfAdults * $this->overlookAdultRate) + ($this->numberOfChildren * $this->overlookChildRate)) * $this->numberOfDays;
         }
+
+    //The following sets the final chosen hotel and costing
+
+    Public function setFinalSelection(){
+        if ($_POST["hotelTrans"]){
+            $this->finalHotelSelection =  "Hotel Transylvania";
+            $this->finalCost = $this->transylvaniaCompare;
+        } else if ($_POST["gorgorothHotel"]){
+            $this->finalHotelSelection =  "Gorgoroth Hotel";
+            $this->finalCost = $this->gorgorothCompare;
+        } else if ($_POST["budapestHotel"]){
+            $this->finalHotelSelection =  "Budapest Hotel";
+            $this->finalCost = $this->budapestCompare;
+        } else if ($_POST["overlookHotel"]){
+            $this->finalHotelSelection =  "Overlook Hotel";
+            $this->finalCost = $this->overlookCompare;
+        } else {
+            $this->finalHotelSelection = $this->hotel;
+            $this->finalCost = $this->totalCost;
+        }}
 
     //Getters
     public function getName(){
@@ -126,6 +181,9 @@ class BookingInformation {
     } 
     public function getSurname(){
         echo $this->surname;
+    }
+    public function getFullname(){
+        echo $this->fullname;
     }
     public function getHotel(){
         echo $this->hotel;
@@ -175,11 +233,18 @@ class BookingInformation {
     public function getOverlookCompare(){
         echo $this->overlookCompare;
     }   
+    public function getFinalCost(){
+        echo $this->finalCost;
+    }
+    public function getFinalHotelSelection(){
+        echo $this->finalHotelSelection;
+    }
 } 
 
 $newBooking = new BookingInformation;
     $newBooking->setName($_SESSION['name']);
     $newBooking->setSurname($_SESSION['surname']);
+    $newBooking->setFullname();
     $newBooking->setHotel($_SESSION['hotels']);
     $newBooking->setCheckIn($_SESSION['checkIn']);
     $newBooking->setCheckOut($_SESSION['checkOut']);
@@ -189,10 +254,6 @@ $newBooking = new BookingInformation;
     $newBooking->setNumberOfDays($_SESSION['checkIn'], $_SESSION['checkOut']);
     $newBooking->setRates($_SESSION['hotels']);
     $newBooking->setTotalCost();
-    $newBooking->setTransCompare();
-    $newBooking->setGorgorothCompare();
-    $newBooking->setBudapestCompare();
-    $newBooking->setOverlookCompare();
+    $newBooking->setHotelCompare();
+    $newBooking->setFinalSelection();
 
-$newConfirmation = new BookingInformation;
-?>

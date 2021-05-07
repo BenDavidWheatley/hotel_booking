@@ -10,79 +10,113 @@ require('function.php')?>
   </head>
 
   <header>
-    <?php include('header.php') ?>
+    <?php include('header.php')?>
   </header>
   
-  <body class='mainBody'>
-    <h1>Hotel Compare</h1>
-    <p>for those with a more adventurios side</p>
+  <body class='body'>   
+    <div class="bookingContainer">
+      <div id="mainBanner">
+        <div id='mainHeading'>
+          <img id='logo' src="assets/images/logo/logo_transparent.png" alt='green company logo for hotel compare'>
+          <h1>Compare</h1>
+          <p>For those with a more adventurous side.</p>
+        </div>
+      </div>
+      
+      <div id=formContainer>
+        <form id="form"  action="index.php" method="post">
+          <h2>Make a booking</h2>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" pattern='[a-zA-Z]+' required>
 
-  <!-- Checkin and comapre form -->
+          <label for="surname">Surname</label>
+          <input type="text" id="surname" name="surname" pattern="[a-zA-Z]+" required>
 
-    <div class="formContainer">
-      <h1>Information</h1>
-      <form id="form"  action="index.php" method="post">
-        
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" required>
 
-        <label for="name">Surname</label>
-        <input type="text" id="surname" name="surname">
+          <label for="hotels">Choose your hotel</label>
+          <select id="hotels" name="hotels" required>
+            <option value="Gorgoroth Hotel">Hotel Gorgoroth</option>
+            <option value="The Overlook Hotel">The Overlook Hotel</option>
+            <option value="Grand Budapest Hotel">Grand Budapest Hotel</option>
+            <option value="Hotel Transylvania">Hotel Transylvania</option>
+          </select>
 
-        <label for="hotels">choose your hotel</label>
-        <select id="hotels" name="hotels">
-          <option value="Gorgoroth Hotel">Hotel Gorgoroth</option>
-          <option value="The Overlook Hotel">The Overlook Hotel</option>
-          <option value="Grand Budapest Hotel">Grand Budapest Hotel</option>
-          <option value="Hotel Transylvania">Hotel Transylvania</option>
-        </select>
+          <label for="checkIn">Check In</label>
+          <input type="date" id="checkIn" name="checkIn" required>
+          <p id="dateValidation">Please choose date greater then today</p>
 
-        <label for="checkIn">Check In</label>
-        <input type="date" id="checkIn" name="checkIn">
+          <label for="checkOut">Check Out</label>
+          <input type="date" id="checkOut" name="checkOut" required>
+          <p id="dateValidationTwo">Please choose date greater then checkin date</p>
 
-        <label for="checkOut">To Date</label>
-        <input type="date" id="checkOut" name="checkOut">
+          <label for="numAdults">Number of adults</label>
+          <input type="text" id="numAdults" name="numAdults" pattern="\d" required>
 
-        <label for="numAdults">Number of adults</label>
-        <input type="text" id="numAdults" name="numAdults">
+          <label for="numChildren">Number of children</label>
+          <input type="text" id="numChildren" name="numChildren" pattern="\d" placeholder="enter 0 if no children" required>
 
-        <label for="numChildren">Number of children</label>
-        <input type="text" id="numChildren" name="numChildren">
+          <button id='submitInfoButton' type="submit" name="submit" value="submit">Submit</button>
 
-        <label for="email">Please provide an email for booking confirmation</label>
-        <input type="email" id="email" name="email">
+        </form> 
+      </div> 
 
-        <button type="submit" name="submit" value="submit">Submit</button>
-
-        <!-- must vaildate form with required, check dates, no html inputs, valid emial -->
-
-        <?php if ($_POST['submit']) { ?>
-        <div id="selectedInformation">
-          <p>Thank you <?php echo $newBooking->getName() . " "; echo $newBooking->getSurname()?> for choosing <?php echo $newBooking->getHotel();?></p>
-          <h4>Dates</h4>
-          <p>checkin for the - <?php echo $newBooking->getCheckIn();?></p>
-          <p>checkout on the - <?php echo $newBooking->getCheckOut();?></p>
-          <p>Number of days - <?php echo $newBooking->getNumberOfDays();?></p>
-          <h4>Number of guests</h4>
-          <p><?php echo $newBooking->getNumOfAdults(); ?> adults and <?php echo $newBooking->getNumOfChildren(); ?> children</p>
-          
-          <p> Cost is - <br> 
-          Adults total R<?php echo $newBooking->getAdultCostTotal()?> at R<?php echo $newBooking->getAdultRate();?> per adult per night.<br>
-          Children total R<?php echo $newBooking->getChildCostTotal()?> at R<?php echo $newBooking->getChildRate(); ?> per child per night</p>
-          <p> Total Cost = R<?php echo $newBooking->getTotalCost()?></p>
-
-          <p>Not too sure about <?php echo $newBooking->getHotel(); ?> ? Why don't you compare it to some of the other hotels in the area?</p>
-          <button formaction="compare.php">Compare</button>
-       </div>
-       <?php } ?>
-      </form>     
+      
+         
     </div>
+    <?php if ($_POST['submit']) { 
+          // The folling validates the dates because - if the checkout date is chosen first, it is possble to choose
+          //a checkIn date that is greater then the checkout.
+          $convertCheckIn = str_replace("-", "", $_POST['checkIn']);
+          $checkInVal = intval($convertCheckIn);
+          $convertCheckOut = str_replace("-", "", $_POST['checkOut']);
+          $checkOutVal = intval($convertCheckOut);
+            if(($checkInVal - $checkOutVal) < 0) {?>
+            <div class="informationContainer">
+                <div class="selectedInformation">
+                  <div id="info">
+                    <p id="thankYouFor">Thank you <span><?php $newBooking->getFullname();?></span> for choosing <br><span><?php $newBooking->getHotel();?></span></p>
+                    <h3>Dates - </h3>
+                    <p>Checkin on the - <span><?php $newBooking->getCheckIn();?></span></p>
+                    <p>Checkout on the - <span><?php $newBooking->getCheckOut();?></span></p>
+                    <p>Number of nights - <span><?php $newBooking->getNumberOfDays();?></span></p>
+                    <h3>Guest information and cost - </h3>
+                    <p><span><?php $newBooking->getNumOfAdults();?> adults</span> and <span><?php $newBooking->getNumOfChildren();?> children</span></p>                                
+                    <p>Adults = <span>R<?php $newBooking->getAdultCostTotal()?></span> at <span>R<?php $newBooking->getAdultRate();?></span> per adult per night.</p>
+                    <p>Children = <span>R<?php $newBooking->getChildCostTotal()?></span> at <span>R<?php $newBooking->getChildRate();?></span> per child per night</p>
+                    <p> Total Cost = <span>R<?php $newBooking->getTotalCost()?></span></p>
 
+                    <p id='notSure'>Not too sure about <span><?php $newBooking->getHotel();?></span> ? Why don't you compare it to some of the other hotels in the area?</p>
+                  </div>  
+      
+                  <section id="selectedHotelButtons">
+                    <button class='button' id="compareButton" onClick="window.location='compare.php';">Compare</button>
+                    <button class='button' id="amend" onClick="window.location='index.php';">Amend selection</button>
+                    <button class='button' id="confirm" onClick="window.location='booknow.php';">Confirm Booking</button>
+                  </section>                
+                </div>
+            </div>
+        <?php } else { ?>
+          <div id=errorContainer>
+            <div id="error">
+              <p>Please make sure that your check out date is greater then your check in</p>
+              <button class='button' onClick="window.location='index.php';">Go back to selection</button>
+            </div>
+          </div>
+          
+          <?php
+      }} ?>
+    
   </body>
+  
 
-  <footer">
+  <div id="mainFooter">
     <?php include("footer.php") ?>
-  </footer>
+  </div>
+
+  <script src="script/script.js" type="text/javascript"></script>
+  <script src="script/menu.js" type="text/javascript"></script>
 
 </html>
 

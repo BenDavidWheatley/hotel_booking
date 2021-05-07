@@ -1,4 +1,5 @@
-<?php session_start();?>
+<?php session_start();
+include('function.php');?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -12,33 +13,38 @@
     <?php include('header.php') ?>
   </header>
 
-  <body class='mainBody'>
+  <body class='hotelBody'>
     <!-- Main image and title -->
     <div class="modelContainer">
         <section class="titleImage">
-            <img  src="assets/images/grand_budapest/budapest.jpeg">
+            <img  src="assets/images/grand_budapest/budapest.jpeg" alt='The grand budapest hotel with a pink overlay color'>
             </section>
-            <section class="topTitleLine">
-            <div></div>
-            </section>
+            
             <section class='titleTextBoxShadow'>   
             </section>
             <section class='titleTextBox'>
-            <p>GRAND BUDAPEST HOTEL</p>  
+            <h2>The Grand Budapest Hotel</h2>  
         </section>    
     </div>
-  <br>
+    <br>
 
-  <div class="about">
-    <h3>About the Grand Budapest</h3>
-    <p>In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. 
-        (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege. 
-        Gustave prides himself on providing first-class service to the hotel's guests, 
-        including satisfying the sexual needs of the many elderly women who stay there. 
-        When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a 
-        priceless painting and the chief suspect in her murder.</p>
+    <div class="about">
+      <div class="aboutText">
+        <h1>About the Grand Budapest</h1>
+        <p>The Grand Budapest Hotel, a popular European ski resort In the 1930s, presided over by concierge Gustave H. 
+          Gustave prides himself on providing first-class service to the hotel's guests.
+          When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a 
+          priceless painting and the chief suspect in her murder.</p>
+      </div>
+      <div class='activitieContainer'>
 
-  </div>
+          <h2>Activities</h2>
+          <p>The Grand Budapest Hotel offers activies, including - </p>    
+          <?php $budapestActivities->getActivities(); ?>
+
+      </div>
+
+    </div>
 
 
   </body>
@@ -46,7 +52,7 @@
   <footer>
     <?php include("footer.php") ?>
   </footer>
+  
+  <script src="script/menu.js" type="text/javascript"></script>
 
- 
-  </body>
 </html>

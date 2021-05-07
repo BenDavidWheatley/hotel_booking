@@ -1,18 +1,8 @@
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="style/style.css" type="text/css">
-    <title>Hotel Compare</title>
-</head>
-
-<html>
-    <header class='headerContainer'>
-        <nav class="navigation">
-        <a href="index.php"><p>Home</p></a>
-        <a href="gorgoroth.php"><p>Hotel Gorgoroth</p></a>
-        <a href="budapest.php"><p>Grand Budapest Hotel</p></a>
-        <a href="shining.php"><p>The Overlook Hotel</p></a>
-        <a href="transylvania.php"><p>Hotel Transylvania</p></a>
-        </nav>
+    <header id="headerContainer">
+        <a id='logoHeader' href="index.php"><img id='logo' src="assets/images/logo/logo_transparent.png" alt='green company logo for hotel compare'></a>    
+        <img id='hamburger' src='assets/images/logo/hamburger.png' onClick='hamburgerMenu()' >   
+        <a id='gorAnchor' href="gorgoroth.php"><p id='hotGor' class='headerItem'>Hotel Gorgoroth</p></a>
+        <a id="budAnchor" href="budapest.php"><p id='hotBud' class='headerItem'>Grand Budapest Hotel</p></a>
+        <a id="overlookAnchor" href="shining.php"><p id='hotOver' class='headerItem'>The Overlook Hotel</p></a>
+        <a id="transAnchor" href="transylvania.php"><p id='hotTran' class='headerItem'>Hotel Transylvania</p></a>
     </header>
-</html>
