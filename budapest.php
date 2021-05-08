@@ -18,8 +18,7 @@ include('function.php');?>
     <div class="modelContainer">
         <section class="titleImage">
             <img  src="assets/images/grand_budapest/budapest.jpeg" alt='The grand budapest hotel with a pink overlay color'>
-            </section>
-            
+            </section>            
             <section class='titleTextBoxShadow'>   
             </section>
             <section class='titleTextBox'>
@@ -27,7 +26,6 @@ include('function.php');?>
         </section>    
     </div>
     <br>
-
     <div class="about">
       <div class="aboutText">
         <h1>About the Grand Budapest</h1>
@@ -37,16 +35,11 @@ include('function.php');?>
           priceless painting and the chief suspect in her murder.</p>
       </div>
       <div class='activitieContainer'>
-
           <h2>Activities</h2>
           <p>The Grand Budapest Hotel offers activies, including - </p>    
           <?php $budapestActivities->getActivities(); ?>
-
       </div>
-
     </div>
-
-
   </body>
 
   <footer>

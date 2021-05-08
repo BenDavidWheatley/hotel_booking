@@ -520,318 +520,317 @@ input:focus, select:focus, #hotels:focus{
 
 @media only screen and (max-width: 768px){
 
-    #headerContainer{
-        background-color:#123c69; 
-        height: 30px;
-        display: grid;
-        grid-template-columns: 20% 60% 20%;
-        grid-template-rows: auto auto auto auto auto;
-        justify-items: center;
-        align-items: center;
-        padding-bottom: 60px;
-        padding-top: 20px
-    }
-    #logoHeader {
-        text-decoration: none;
-        grid-column-start: 1;
-        grid-column-end: 2;
-        margin-left: 40px;
-    }
-    #gorAnchor, #budAnchor, #overlookAnchor, #transAnchor{
-        grid-column-start: 2;
-        grid-column-end:3;
-    }
-    #gorAnchor {
-        grid-row-start: 2;
-    }
-    #budAnchor {
-        grid-row-start: 3;
-    }
-    #overlookAnchor{
-        grid-row-start: 4;
-    }
-    #transAnchor {
-        grid-row-start: 5;
-    }
-    #headerContainer p{     
-        padding-left: 5px;
-        padding-right: 5px;
-        display: none;
-    }
-    #headerContainer p:hover{
-        color: #BAB2B5;
-        border-bottom: 1px solid #BAB2B5; 
-        padding: 0px;
-    }
-    #headerContainer #logo{
-        grid-column-start: 1;
-        grid-column-end: 2;
-        height: 60px;
-    }
-    #hamburger{
-        height: 40px;
-        display: block;  
-        grid-column-start: 3; 
-        grid-column-end: 4;  
-        margin-right: 40px;
-    }
-    .body {
-        background-position: 0 950px !important;
-    }
-    #socialContainer img{    
-        width: auto;
-        margin: 20px;    
-    }
-    #mainHeading #logo{
-        display: none;
-    }
-    #mainHeading {
-        margin-top: 60px;
-        margin-bottom: 60px;
-    }
-    .informationContainer, #errorContainer{
-        transform:  translateY(-140px);  
-        padding-top: 100px;  
-    }
-    .selectedInformation {
-        margin: 20px;
-        margin-bottom: 100px;
-    } 
-    .titleTextBox h2{
-        font-size: 100%;
-    }
-    .about{
-        width: 95%;
-        height: 100%;
-        margin: auto;
-        margin-top: 0px; 
-        margin-bottom: 10px;
-        display: grid;
-        grid-template-columns: 100%;/*30% 20% 50%; */ 
-        grid-template-rows: 60% 40%;/*35% 10% 25% 10%; */
-    }
-    .aboutText p{
-        line-height: 1.6em;
-        font-size: 0.8em;
-        padding: 3%;
-    }
-    .aboutText h1 {
-        margin-bottom: 1%;
-        margin-top: 0px;
-        font-size: 1.5em;
-        padding: 3%;
-    }
-    .aboutText{    
-        font-size: 1.2em; 
-        width: 100%; 
-        height: 70%;
-        padding: 0%;
-        margin-left: 0px;
-        grid-row-start: 1;
-        grid-row-end: 2;
-        box-shadow: none;   
-    }
-    .activitieContainer{
-        width: 100%;   
-        height: 90%;
-        grid-column-start: 1;
-        grid-column-end: 4;
-        grid-row-start: 2;
-        grid-row-end: 3;  
-        margin: 0px;
-        margin-bottom: 0px; 
-        padding: 0px;
-        box-shadow: none;
-    }
-    .activitieContainer p, .activitieContainer h2 {
-        padding: 3%;
-    }
-    .activitieContainer p, .activitieContainer li{
-        font-size: 1em;
-    }
-    #hotelContainer{
-        display: block;
-    }
-    #selectedHotel{
-        display: block;
-    }
-    #comparedHeader h1{
-        margin-top: 10%;
-        margin-bottom: 4%;
-    }
-    .comparedContainer{
-        margin-bottom: 4%;
-    }
-    .buttonContainer {
-        margin-top: 5em;
-    }
-    .buttonContainer input {
-        margin-top: 2em;
-    }
-    .buttonContainer Button {
-        margin-top: 6em;
-    }
-    .buttonContainer a{
-        margin-right: 0px;
-    }
-    .comparedText {
-        margin-bottom: 100px;;
-    }
-    #comparedBody{
-        background-image: none;
-    }
-    .listedActivities {
-        margin-bottom: 0px;
-    }
+#headerContainer{
+    background-color:#123c69; 
+    height: 30px;
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    grid-template-rows: auto auto auto auto auto;
+    justify-items: center;
+    align-items: center;
+    padding-bottom: 60px;
+    padding-top: 20px
+}
+#logoHeader {
+    text-decoration: none;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    margin-left: 40px;
+}
+#gorAnchor, #budAnchor, #overlookAnchor, #transAnchor{
+    grid-column-start: 2;
+    grid-column-end:3;
+}
+#gorAnchor {
+    grid-row-start: 2;
+}
+#budAnchor {
+    grid-row-start: 3;
+}
+#overlookAnchor{
+    grid-row-start: 4;
+}
+#transAnchor {
+    grid-row-start: 5;
+}
+#headerContainer p{     
+    padding-left: 5px;
+    padding-right: 5px;
+    display: none;
+}
+#headerContainer p:hover{
+    color: #BAB2B5;
+    border-bottom: 1px solid #BAB2B5; 
+    padding: 0px;
+}
+#headerContainer #logo{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    height: 60px;
+}
+#hamburger{
+    height: 40px;
+    display: block;  
+    grid-column-start: 3; 
+    grid-column-end: 4;  
+    margin-right: 40px;
+}
+.body {
+    background-position: 0 950px !important;
+}
+#socialContainer img{    
+    width: auto;
+    margin: 20px;    
+}
+#mainHeading #logo{
+    display: none;
+}
+#mainHeading {
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+.informationContainer, #errorContainer{
+    transform:  translateY(-140px);  
+    padding-top: 100px;  
+}
+.selectedInformation {
+    margin: 20px;
+    margin-bottom: 100px;
+} 
+.titleTextBox h2{
+    font-size: 100%;
+}
+.about{
+    width: 95%;
+    height: 100%;
+    margin: auto;
+    margin-top: 0px; 
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 100%;/*30% 20% 50%; */ 
+    grid-template-rows: 60% 40%;/*35% 10% 25% 10%; */
+}
+.aboutText p{
+    line-height: 1.6em;
+    font-size: 0.8em;
+    padding: 3%;
+}
+.aboutText h1 {
+    margin-bottom: 1%;
+    margin-top: 0px;
+    font-size: 1.5em;
+    padding: 3%;
+}
+.aboutText{    
+    font-size: 1.2em; 
+    width: 100%; 
+    height: 70%;
+    padding: 0%;
+    margin-left: 0px;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    box-shadow: none;   
+}
+.activitieContainer{
+    width: 100%;   
+    height: 90%;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;  
+    margin: 0px;
+    margin-bottom: 0px; 
+    padding: 0px;
+    box-shadow: none;
+}
+.activitieContainer p, .activitieContainer h2 {
+    padding: 3%;
+}
+.activitieContainer p, .activitieContainer li{
+    font-size: 1em;
+}
+#hotelContainer{
+    display: block;
+}
+#selectedHotel{
+    display: block;
+}
+#comparedHeader h1{
+    margin-top: 10%;
+    margin-bottom: 4%;
+}
+.comparedContainer{
+    margin-bottom: 4%;
+}
+.buttonContainer {
+    margin-top: 5em;
+}
+.buttonContainer input {
+    margin-top: 2em;
+}
+.buttonContainer Button {
+    margin-top: 6em;
+}
+.buttonContainer a{
+    margin-right: 0px;
+}
+.comparedText {
+    margin-bottom: 100px;;
+}
+#comparedBody{
+    background-image: none;
+}
+.listedActivities {
+    margin-bottom: 0px;
+}
 }
 @media only screen and (max-width: 550px){
-    .titleTextBox, .titleTextBoxShadow {
-        display: flex;
-        height: 70%;
-        grid-column-start: 1;
-        grid-column-end: 4;
-    }
-    .footerContainer h2 {    
-        padding: 5px;
-        font-size: 15px;;
-    }
-    #mainFooter {
-        margin-top: 1500px;
+.titleTextBox, .titleTextBoxShadow {
+    display: flex;
+    height: 70%;
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+.footerContainer h2 {    
+    padding: 5px;
+    font-size: 15px;;
+}
+#mainFooter {
+    margin-top: 1500px;
+    height: 100px;
+}
+.footerContainer{  
         height: 100px;
-     }
-    .footerContainer{  
-         height: 100px;
-         padding: 20px;
-     }
-    #socialContainer {
-        display: flex;
-        justify-content: center;
-        margin: none; 
-    }
-    #socialContainer img{
-        height: auto;
-        width: 80%;
-        margin: 10px
-    }
-    #formContainer{
-        margin-bottom: 20px;  
-    }
-    #form{
-        width: 100%;
-        padding: 10px;
-        margin: 20px;
-    }
-    #form button {
-        margin-bottom: 20px;
-    }
-    .body{
-        background-image: none;
-    }
-    #selectedHotel img{
-        margin-bottom: 0px;
-    }
-    #selectedHotelButtons{
-        display: grid;
-        grid-template-rows: auto auto auto;
-        width: 100%;
-        margin: auto;  
-    }
-    #selectedHotelButtons button {
-        width: 100%;
-        margin: auto;
-        margin-top: 1em;
-    }
-    .selectedInformation {
-        margin: 20px;
-        margin-bottom: auto;
-    }
-    .informationContainer, #errorContainer{
-        transform:  translateY(-200px);  
-        padding-top: 100px;      
-    }
-    #info{
-        height: 100%;
-        margin: 0px;
-        width: 100%;
-    }
-    .modelContainer{
-        padding: 0px;
-        border-radius: 0px;
-    }
-    .titleImage img {
-        height: 100%;
-        border-radius: 0px;
-    }
-    .informationContainer{
-        overflow: scroll;
-    }
-    .about{    
-        grid-template-columns: 100%;
-        grid-template-rows: 60% 40%;
-    }
-    .aboutText p{
-        line-height: 1.5em;
-        font-size: 0.8em;
-        padding: 3%;
-    }
-    .aboutText h1 {
-        margin-bottom: 2%;
-        margin-top: 0px;
-        font-size: 1.4em;
-        padding: 3%;
-    }
-    .aboutText{    
-        font-size: 1.2em; 
-        width: 100%; 
-        height: 95%;
-    }
-    .activitieContainer{
-        width: 100%;   
-        height: 90%; 
-        box-shadow: none;
-    }
-    .activitieContainer p, .activitieContainer h2 {
-        padding: 3%;
-    }
-    .activitieContainer p, .activitieContainer li{
-        font-size: 1em;
-    }
-    .chosenButtons {
-        display: grid;
-        grid-template-rows: auto auto auto;
-        margin-bottom: 40px;
-    }
-    .buttons {
-        width: 100%;
-        margin-bottom: 2em;
-    }
-    #bottomButton {
-        margin-bottom: 0em;
-    }
-    .comparedContainer img{
-        margin-bottom: 0px;
-    }
-    .comparedText {
-        margin-bottom: 0px;
-        width: 100%;
-    }
-    .buttonContainer{
-        display: grid;
-        position: relative;
-        grid-template-rows: auto auto;
-        margin: auto;
-        width: 100%;
-    }
-    .buttonContainer form{
-        margin: 0px;
-    }
-    #confirmedBookingButton{
-        margin: 0px;      
-    }
-    #emailSent{
-        transform:  translateY(80px); 
-    }
-
+        padding: 20px;
+}
+#socialContainer {
+    display: flex;
+    justify-content: center;
+    margin: none; 
+}
+#socialContainer img{
+    height: auto;
+    width: 80%;
+    margin: 10px
+}
+#formContainer{
+    margin-bottom: 20px;  
+}
+#form{
+    width: 100%;
+    padding: 10px;
+    margin: 20px;
+}
+#form button {
+    margin-bottom: 20px;
+}
+.body{
+    background-image: none;
+}
+#selectedHotel img{
+    margin-bottom: 0px;
+}
+#selectedHotelButtons{
+    display: grid;
+    grid-template-rows: auto auto auto;
+    width: 100%;
+    margin: auto;  
+}
+#selectedHotelButtons button {
+    width: 100%;
+    margin: auto;
+    margin-top: 1em;
+}
+.selectedInformation {
+    margin: 20px;
+    margin-bottom: auto;
+}
+.informationContainer, #errorContainer{
+    transform:  translateY(-200px);  
+    padding-top: 100px;      
+}
+#info{
+    height: 100%;
+    margin: 0px;
+    width: 100%;
+}
+.modelContainer{
+    padding: 0px;
+    border-radius: 0px;
+}
+.titleImage img {
+    height: 100%;
+    border-radius: 0px;
+}
+.informationContainer{
+    overflow: scroll;
+}
+.about{    
+    grid-template-columns: 100%;
+    grid-template-rows: 60% 40%;
+}
+.aboutText p{
+    line-height: 1.5em;
+    font-size: 0.8em;
+    padding: 3%;
+}
+.aboutText h1 {
+    margin-bottom: 2%;
+    margin-top: 0px;
+    font-size: 1.4em;
+    padding: 3%;
+}
+.aboutText{    
+    font-size: 1.2em; 
+    width: 100%; 
+    height: 95%;
+}
+.activitieContainer{
+    width: 100%;   
+    height: 90%; 
+    box-shadow: none;
+}
+.activitieContainer p, .activitieContainer h2 {
+    padding: 3%;
+}
+.activitieContainer p, .activitieContainer li{
+    font-size: 1em;
+}
+.chosenButtons {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    margin-bottom: 40px;
+}
+.buttons {
+    width: 100%;
+    margin-bottom: 2em;
+}
+#bottomButton {
+    margin-bottom: 0em;
+}
+.comparedContainer img{
+    margin-bottom: 0px;
+}
+.comparedText {
+    margin-bottom: 0px;
+    width: 100%;
+}
+.buttonContainer{
+    display: grid;
+    position: relative;
+    grid-template-rows: auto auto;
+    margin: auto;
+    width: 100%;
+}
+.buttonContainer form{
+    margin: 0px;
+}
+#confirmedBookingButton{
+    margin: 0px;      
+}
+#emailSent{
+    transform:  translateY(80px); 
+}
 }
 
 

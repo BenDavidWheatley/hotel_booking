@@ -15,7 +15,6 @@ include('function.php')?>
 
   <body id='comparedBody'>
     
-
     <!-- initial hotel that was picked -->
 
     <div id="hotelContainer">       
@@ -76,8 +75,7 @@ include('function.php')?>
                     <p>Total number of days - <span><?php $newBooking->getNumberOfDays();?></span></p>
                     <p>Total cost <span>R<?php $newBooking->getTotalCost()?></span></p> 
                 </section>               
-            </section>
-    
+            </section>    
         </div>
 
         <!-- First hotel compared -->
@@ -104,7 +102,6 @@ include('function.php')?>
                         </form>
                     </div>
                 </section>
-
                 <?php } else {
                     include('gorgorothCompared.php');
                 } ?>        

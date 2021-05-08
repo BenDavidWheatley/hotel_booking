@@ -61,9 +61,6 @@ require('function.php')?>
 
         </form> 
       </div> 
-
-      
-         
     </div>
     <?php if ($_POST['submit']) { 
           // The folling validates the dates because - if the checkout date is chosen first, it is possble to choose
@@ -103,14 +100,11 @@ require('function.php')?>
               <p>Please make sure that your check out date is greater then your check in</p>
               <button class='button' onClick="window.location='index.php';">Go back to selection</button>
             </div>
-          </div>
-          
+          </div>          
           <?php
-      }} ?>
-    
+      }} ?>  
   </body>
   
-
   <div id="mainFooter">
     <?php include("footer.php") ?>
   </div>

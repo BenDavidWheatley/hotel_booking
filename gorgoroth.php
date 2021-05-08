@@ -42,8 +42,7 @@ include('function.php');
           Should you wish to venture further a field, you could always jump on a Drake and fly to Nurn just south of Mordor or out to the deserts of Lithlad towrds the east.
           </p>
         </div>
-        <div class="activitieContainer">
-       
+        <div class="activitieContainer">     
           <h2>Activities - </h2>
           <p>Gorgoroth offers an array of life threatening activies, including - </p>   
           <?php $gorgorothActivities->getActivities();?>
