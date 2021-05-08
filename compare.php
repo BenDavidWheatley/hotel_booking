@@ -26,7 +26,7 @@ include('function.php')?>
                     <img value="one" src="assets/images/gorgoroth/gorgoroth_hotel.jpg" alt='ork standing on a mountain with gorgoroth in the background'> 
                     <div class="chosenButtons"> 
                         <button class='buttons' onClick="window.location='gorgoroth.php';">More Information</button>
-                        <button class='buttons' onClick="window.location='booknow.php';">Confirm Booking</button>
+                        <button class='buttons' onClick="window.location='booknow.php';">Book now</button>
                         <button id='bottomButton' class='buttons' onClick="window.location='index.php';" value="back">Back to selection</button>
                     </div>
                 <?php } else if ($_SESSION['hotels'] === 'The Overlook Hotel') {?>

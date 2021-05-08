@@ -738,6 +738,8 @@ input:focus, select:focus, #hotels:focus{
     }
     #selectedHotelButtons button {
         width: 100%;
+        margin: auto;
+        margin-top: 1em;
     }
     .selectedInformation {
         margin: 20px;
@@ -759,6 +761,9 @@ input:focus, select:focus, #hotels:focus{
     .titleImage img {
         height: 100%;
         border-radius: 0px;
+    }
+    .informationContainer{
+        overflow: scroll;
     }
     .about{    
         grid-template-columns: 100%;
